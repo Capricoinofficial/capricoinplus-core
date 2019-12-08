@@ -166,13 +166,27 @@ void ReceiveCoinsDialog::on_receiveButton_clicked()
     /* Generate new receiving address */
     AddressTableModel::AddrType addrType = AddressTableModel::ADDR_STANDARD;
 
-    if (ui->cbxAddressType->currentText() == "Stealth")
+    QString sAddrType = ui->cbxAddressType->currentText();
+    QStringList addrTypeTranslated = ui->cbxAddressType->currentText().split(" ");
+    if (addrTypeTranslated.count() > 1) {
+        sAddrType = addrTypeTranslated.value(addrTypeTranslated.length() - 1);
+        if (sAddrType == "(S)") {
+            sAddrType = "Standard";
+        } else if(sAddrType == "(Ext)") {
+            sAddrType = "Extended";
+        } else if(sAddrType == "(256bit)" || "256bit") {
+            sAddrType = "Standard 256bit";
+        } else if (sAddrType == "(St)") {
+            sAddrType = "Stealth";
+        }
+    } 
+    if (sAddrType == "Stealth")
         addrType = AddressTableModel::ADDR_STEALTH;
     else
-    if (ui->cbxAddressType->currentText() == "Extended")
+    if (sAddrType == "Extended")
         addrType = AddressTableModel::ADDR_EXT;
     else
-    if (ui->cbxAddressType->currentText() == "Standard 256bit")
+    if (sAddrType == "Standard 256bit")
         addrType = AddressTableModel::ADDR_STANDARD256;
 
     address = model->getAddressTableModel()->addRow(AddressTableModel::Receive, label, "", address_type, addrType);

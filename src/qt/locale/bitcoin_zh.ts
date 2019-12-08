@@ -634,15 +634,15 @@
     <name>CoinControlDialog</name>
     <message>
         <source>Standard</source>
-        <translation>标准</translation>
+        <translation>标准 (S)</translation>
     </message>
     <message>
         <source>Blind</source>
-        <translation>隐私的</translation>
+        <translation>隐私的 (B)</translation>
     </message>
     <message>
         <source>Anon</source>
-        <translation>匿名的</translation>
+        <translation>匿名的 (A)</translation>
     </message>
     <message>
         <source>Coin Selection</source>
@@ -2158,6 +2158,22 @@
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
+        <source>Standard</source>
+        <translation>标准 (S)</translation>
+    </message>
+    <message>
+        <source>Stealth</source>
+        <translation>隐形 (St)</translation>
+    </message>
+    <message>
+        <source>Extended</source>
+        <translation>隐形 (Ext)</translation>
+    </message>
+    <message>
+        <source>Standard 256bit</source>
+        <translation>标准256bit (256bit)</translation>
+    </message>
+    <message>
         <source>&amp;Amount:</source>
         <translation>总额(&amp;A)：</translation>
     </message>
@@ -2336,15 +2352,15 @@
     <name>SendCoinsDialog</name>
     <message>
         <source>Standard</source>
-        <translation>标准</translation>
+        <translation>标准 (S)</translation>
     </message>
     <message>
         <source>Blind</source>
-        <translation>隐私的</translation>
+        <translation>隐私的 (B)</translation>
     </message>
     <message>
         <source>Anon</source>
-        <translation>匿名的</translation>
+        <translation>匿名的 (A)</translation>
     </message>
     <message>
         <source>Send to a coldstake script</source>

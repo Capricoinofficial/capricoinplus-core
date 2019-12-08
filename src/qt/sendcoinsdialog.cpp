@@ -300,11 +300,34 @@ void SendCoinsDialog::on_sendButton_clicked()
     QString sCommand = "sendtypeto ";
 
     // TODO: Translations?
-    QString sTypeFrom = ui->cbxTypeFrom->currentText();
-    QString sTypeTo = ui->cbxTypeTo->currentText();
+    QString sTypeFrom = ui->cbxTypeFrom->currentText().toLower(); 
+    QString sTypeTo = ui->cbxTypeTo->currentText().toLower();
+    QStringList sTypeFromTranslated = ui->cbxTypeFrom->currentText().split(" ");
+    QStringList sTypeToTranslated = ui->cbxTypeTo->currentText().split(" ");
 
-    sCommand += sTypeFrom.toLower() + " ";
-    sCommand += sTypeTo.toLower();
+    if (sTypeFromTranslated.count() > 1) {
+        sTypeFrom = sTypeFromTranslated.value(sTypeFromTranslated.length() - 1).toLower();
+        if (sTypeFrom == "(b)") {
+            sTypeFrom = "blind";
+        } else if(sTypeFrom == "(a)") {
+            sTypeFrom = "anon";
+        } else {
+            sTypeFrom = "standard";
+        }
+    } 
+    if (sTypeToTranslated.count() > 1) {
+        sTypeTo = sTypeToTranslated.value(sTypeToTranslated.length() - 1).toLower();
+        if (sTypeTo == "(b)") {
+            sTypeTo = "blind";
+        } else if(sTypeTo == "(a)") {
+            sTypeTo = "anon";
+        } else {
+            sTypeTo = "standard";
+        }
+    }
+    
+    sCommand += sTypeFrom + " ";
+    sCommand += sTypeTo;
 
     sCommand += " [";
 
@@ -835,12 +858,18 @@ void SendCoinsDialog::useAvailableBalance(SendCoinsEntry* entry)
         coin_control = *CoinControlDialog::coinControl();
     }
 
-    QString sTypeFrom = ui->cbxTypeFrom->currentText().toLower();
+    QString sTypeFrom;
+    QStringList  sTypeFromTranslated = ui->cbxTypeFrom->currentText().split(" ");
+    if(sTypeFromTranslated.count() > 1) {
+        sTypeFrom = sTypeFromTranslated.value(sTypeFromTranslated.length() - 1).toLower();
+    } else {
+        sTypeFrom = ui->cbxTypeFrom->currentText().toLower();
+    }
     // Calculate available amount to send.
 
     CAmount amount =
-        sTypeFrom == "anon" ? model->wallet().getAvailableAnonBalance(coin_control) :
-        sTypeFrom == "blind" ? model->wallet().getAvailableBlindBalance(coin_control) :
+        (sTypeFrom == "anon" || sTypeFrom == "(a)") ? model->wallet().getAvailableAnonBalance(coin_control) :
+        (sTypeFrom == "blind" || sTypeFrom == "(b)") ? model->wallet().getAvailableBlindBalance(coin_control) :
         model->wallet().getAvailableBalance(coin_control);
 
     for (int i = 0; i < ui->entries->count(); ++i) {

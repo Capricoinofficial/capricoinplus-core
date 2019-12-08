@@ -634,10 +634,16 @@ void CoinControlDialog::updateView()
 
     int nDisplayUnit = model->getOptionsModel()->getDisplayUnit();
 
-    QString sType = ui->cbxType->currentText().toLower();
+    QString sType;
+    QStringList sTypeTranslated = ui->cbxType->currentText().split(" ");
+    if (sTypeTranslated.count() > 1) {
+        sType = sTypeTranslated.value(sTypeTranslated.length() - 1).toLower();
+    } else {
+        sType = ui->cbxType->currentText().toLower();
+    }
 
     for (const auto& coins : model->wallet().listCoins(
-        sType == "anon" ? OUTPUT_RINGCT : sType == "blind" ? OUTPUT_CT : OUTPUT_STANDARD)) {
+        (sType == "anon" || sType == "(a)") ? OUTPUT_RINGCT : (sType == "blind" || sType == "(b)") ? OUTPUT_CT : OUTPUT_STANDARD)) {
 
         CCoinControlWidgetItem *itemWalletAddress = new CCoinControlWidgetItem();
         itemWalletAddress->setCheckState(COLUMN_CHECKBOX, Qt::Unchecked);
