@@ -70,7 +70,7 @@ static UniValue smsgenable(const JSONRPCRequest &request)
         sFindWallet = request.params[0].get_str();
     }
     for (const auto &pw : vpwallets) {
-        CHDWallet *const ppartw = GetParticlWallet(pw.get());
+        CHDWallet *const ppartw = GetCapricoinPlusWallet(pw.get());
         if (!ppartw) {
             continue;
         }
@@ -658,7 +658,7 @@ static UniValue smsgdumpprivkey(const JSONRPCRequest &request)
             RPCHelpMan{"smsgdumpprivkey",
                 "\nReveals the private key corresponding to 'address'.\n",
                 {
-                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The particl address for the private key"},
+                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The capricoinplus address for the private key"},
                 },
                 RPCResult{
             "\"key\"                (string) The private key\n"
@@ -673,7 +673,7 @@ static UniValue smsgdumpprivkey(const JSONRPCRequest &request)
     std::string strAddress = request.params[0].get_str();
     CTxDestination dest = DecodeDestination(strAddress);
     if (!IsValidDestination(dest)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Particl address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Capricoin+ address");
     }
 
     if (dest.type() != typeid(CKeyID)) {
@@ -787,7 +787,7 @@ static UniValue smsgsend(const JSONRPCRequest &request)
                         "options"},
                     {"coin_control", RPCArg::Type::OBJ, /* default */ "", "",
                         {
-                            {"changeaddress", RPCArg::Type::STR, /* default */ "", "The particl address to receive the change"},
+                            {"changeaddress", RPCArg::Type::STR, /* default */ "", "The capricoinplus address to receive the change"},
                             {"inputs", RPCArg::Type::ARR, /* default */ "", "A json array of json objects",
                                 {
                                     {"", RPCArg::Type::OBJ, /* default */ "", "",
@@ -926,7 +926,7 @@ static UniValue smsgsend(const JSONRPCRequest &request)
         if (!smsgModule.pactive_wallet) {
             throw JSONRPCError(RPC_INVALID_PARAMETER, "Active wallet must be set to send a paid smsg.");
         }
-        CHDWallet *const pw = GetParticlWallet(smsgModule.pactive_wallet.get());
+        CHDWallet *const pw = GetCapricoinPlusWallet(smsgModule.pactive_wallet.get());
         if (!fTestFee) {
             EnsureWalletIsUnlocked(pw);
         }
@@ -1117,9 +1117,9 @@ static UniValue smsginbox(const JSONRPCRequest &request)
                     std::string sAddrTo = EncodeDestination(smsgStored.addrTo);
                     std::string sText = std::string((char*)msg.vchMessage.data());
                     if (filter.size() > 0
-                        && !(part::stringsMatchI(msg.sFromAddress, filter, 3) ||
-                            part::stringsMatchI(sAddrTo, filter, 3) ||
-                            part::stringsMatchI(sText, filter, 3))) {
+                        && !(standard::stringsMatchI(msg.sFromAddress, filter, 3) ||
+                            standard::stringsMatchI(sAddrTo, filter, 3) ||
+                            standard::stringsMatchI(sText, filter, 3))) {
                         continue;
                     }
 
@@ -1279,9 +1279,9 @@ static UniValue smsgoutbox(const JSONRPCRequest &request)
                     std::string sAddrTo = EncodeDestination(smsgStored.addrTo);
                     std::string sText = std::string((char*)msg.vchMessage.data());
                     if (filter.size() > 0
-                        && !(part::stringsMatchI(msg.sFromAddress, filter, 3) ||
-                            part::stringsMatchI(sAddrTo, filter, 3) ||
-                            part::stringsMatchI(sText, filter, 3))) {
+                        && !(standard::stringsMatchI(msg.sFromAddress, filter, 3) ||
+                            standard::stringsMatchI(sAddrTo, filter, 3) ||
+                            standard::stringsMatchI(sText, filter, 3))) {
                         continue;
                     }
 
@@ -1384,7 +1384,7 @@ static UniValue smsgbuckets(const JSONRPCRequest &request)
                     objM.pushKV("no. messages", strprintf("%u", tokenSet.size()));
                     objM.pushKV("active messages", strprintf("%u", nActiveMessages));
                     objM.pushKV("hash", sHash);
-                    objM.pushKV("last changed", part::GetTimeString(it->second.timeChanged, cbuf, sizeof(cbuf)));
+                    objM.pushKV("last changed", standard::GetTimeString(it->second.timeChanged, cbuf, sizeof(cbuf)));
                 }
 
                 fs::path fullPath = GetDataDir() / smsg::STORE_DIR / sFile;
@@ -1400,7 +1400,7 @@ static UniValue smsgbuckets(const JSONRPCRequest &request)
                         nFBytes = fs::file_size(fullPath);
                         nBytes += nFBytes;
                         if (show_buckets) {
-                            objM.pushKV("file size", part::BytesReadable(nFBytes));
+                            objM.pushKV("file size", standard::BytesReadable(nFBytes));
                         }
                     } catch (const fs::filesystem_error& ex) {
                         objM.pushKV("file size, error", ex.what());
@@ -1416,7 +1416,7 @@ static UniValue smsgbuckets(const JSONRPCRequest &request)
         objM.pushKV("numbuckets", (int)nBuckets);
         objM.pushKV("numpurged", (int)smsgModule.setPurged.size());
         objM.pushKV("messages", (int)nMessages);
-        objM.pushKV("size", part::BytesReadable(nBytes));
+        objM.pushKV("size", standard::BytesReadable(nBytes));
         if (arrBuckets.size() > 0) {
             result.pushKV("buckets", arrBuckets);
         }
@@ -1529,7 +1529,7 @@ static UniValue smsgview(const JSONRPCRequest &request)
                 for (const auto &pw : smsgModule.m_vpwallets) {
                     LOCK(pw->cs_wallet);
                     for (itl = pw->mapAddressBook.begin(); itl != pw->mapAddressBook.end(); ++itl) {
-                        if (part::stringsMatchI(itl->second.name, sTemp, matchType)) {
+                        if (standard::stringsMatchI(itl->second.name, sTemp, matchType)) {
                             CBitcoinAddress checkValid(itl->first);
                             if (checkValid.IsValid()) {
                                 CKeyID ki;
@@ -1556,7 +1556,7 @@ static UniValue smsgview(const JSONRPCRequest &request)
             }
             i++;
             sTemp = request.params[i].get_str();
-            tFrom = part::strToEpoch(sTemp.c_str());
+            tFrom = standard::strToEpoch(sTemp.c_str());
             if (tFrom < 0) {
                 throw JSONRPCError(RPC_INVALID_PARAMETER, "from format error: " + std::string(strerror(errno)));
             }
@@ -1567,7 +1567,7 @@ static UniValue smsgview(const JSONRPCRequest &request)
             }
             i++;
             sTemp = request.params[i].get_str();
-            tTo = part::strToEpoch(sTemp.c_str());
+            tTo = standard::strToEpoch(sTemp.c_str());
             if (tTo < 0) {
                 throw JSONRPCError(RPC_INVALID_PARAMETER, "to format error: " + std::string(strerror(errno)));
             }
@@ -1719,10 +1719,10 @@ static UniValue smsgview(const JSONRPCRequest &request)
 
     result.pushKV("result", strprintf("Displayed %u messages.", nMessages));
     if (tFrom > 0) {
-        result.pushKV("from", part::GetTimeString(tFrom, cbuf, sizeof(cbuf)));
+        result.pushKV("from", standard::GetTimeString(tFrom, cbuf, sizeof(cbuf)));
     }
     if (tTo > 0) {
-        result.pushKV("to", part::GetTimeString(tTo, cbuf, sizeof(cbuf)));
+        result.pushKV("to", standard::GetTimeString(tTo, cbuf, sizeof(cbuf)));
     }
 #else
     UniValue result(UniValue::VOBJ);

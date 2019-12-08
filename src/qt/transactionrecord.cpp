@@ -56,7 +56,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const interface
                         uint32_t sidx;
                         memcpy(&sidx, &r.vPath[1], 4);
                         CStealthAddress sx;
-                        if (wtx.partWallet->GetStealthByIndex(sidx, sx))
+                        if (wtx.standardWallet->GetStealthByIndex(sidx, sx))
                             address = sx;
                     }
                 }
@@ -67,7 +67,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const interface
             }
 
             if (r.nType == OUTPUT_STANDARD) {
-                sub.typeOut = 'P';
+                sub.typeOut = 'S';
             } else
             if (r.nType == OUTPUT_CT) {
                 sub.typeOut = 'B';

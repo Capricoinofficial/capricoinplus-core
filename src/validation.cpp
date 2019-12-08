@@ -1,5 +1,7 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
+// Copyright (c) 2019 The Capricoin+ Core developers
+// Copyright (c) 2017-2019 The Particl Core developers
 // Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2010 Satoshi Nakamoto
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -55,7 +57,7 @@
 #include <boost/thread.hpp>
 
 #if defined(NDEBUG)
-# error "Particl cannot be compiled without assertions."
+# error "Capricoin+ cannot be compiled without assertions."
 #endif
 
 #define MICRO 0.000001
@@ -276,7 +278,7 @@ std::atomic_bool g_is_mempool_loaded{false};
 CScript COINBASE_FLAGS;
 
 
-const std::string strMessageMagic = "Bitcoin Signed Message:\n";
+const std::string strMessageMagic = "CapricoinPlus Signed Message:\n";
 
 // Internal stuff
 namespace {
@@ -590,7 +592,7 @@ static bool CheckInputsFromMempoolAndCache(const CTransaction& tx, CValidationSt
         if (txFrom) {
             assert(txFrom->GetHash() == txin.prevout.hash);
             assert(txFrom->GetNumVOuts() > txin.prevout.n);
-            if (txFrom->IsParticlVersion())
+            if (txFrom->IsCapricoinPlusVersion())
             {
                 assert(coin.Matches(txFrom->vpout[txin.prevout.n].get()));
             } else
@@ -641,7 +643,7 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
     // Do not work on transactions that are too small.
     // A transaction with 1 segwit input and 1 P2WPHK output has non-witness size of 82 bytes.
     // Transactions smaller than this are not relayed to reduce unnecessary malloc overhead.
-    if (::GetSerializeSize(tx, PROTOCOL_VERSION | SERIALIZE_TRANSACTION_NO_WITNESS) < (fParticlMode ? MIN_STANDARD_TX_NONWITNESS_SIZE_PART : MIN_STANDARD_TX_NONWITNESS_SIZE))
+    if (::GetSerializeSize(tx, PROTOCOL_VERSION | SERIALIZE_TRANSACTION_NO_WITNESS) < (fCapricoinPlusMode ? MIN_STANDARD_TX_NONWITNESS_SIZE_CAPRICOINPLUS : MIN_STANDARD_TX_NONWITNESS_SIZE))
         return state.DoS(0, false, REJECT_NONSTANDARD, "tx-size-small");
 
     // Only accept nLockTime-using transactions that can be mined in the next
@@ -1212,10 +1214,10 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
     }
 
     // Check the header
-    if (fParticlMode) {
+    if (fCapricoinPlusMode) {
         // only CheckProofOfWork for genesis blocks
         if (block.hashPrevBlock.IsNull()
-            && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams, 0, Params().GetLastImportHeight())) {
+            && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams, 0)) {
             return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
         }
     } else {
@@ -1453,7 +1455,7 @@ bool IsInitialBlockDownload()
     if (chainActive.Tip()->nHeight > COINBASE_MATURITY
         && chainActive.Tip()->GetBlockTime() < (GetTime() - nMaxTipAge))
         return true;
-    if (fParticlMode
+    if (fCapricoinPlusMode
         && (GetNumPeers() < 1
             || chainActive.Tip()->nHeight < GetNumBlocksOfPeers()-10))
         return true;
@@ -1896,7 +1898,7 @@ DisconnectResult CChainState::DisconnectBlock(const CBlock& block, const CBlockI
         return DISCONNECT_FAILED;
     }
 
-    if (!fParticlMode) {
+    if (!fCapricoinPlusMode) {
         if (blockUndo.vtxundo.size() + 1 != block.vtx.size()) {
             error("DisconnectBlock(): block and undo data inconsistent");
             return DISCONNECT_FAILED;
@@ -2017,7 +2019,7 @@ DisconnectResult CChainState::DisconnectBlock(const CBlock& block, const CBlockI
         }
 
 
-        if (fParticlMode) {
+        if (fCapricoinPlusMode) {
             // restore inputs
             if (!tx.IsCoinBase()) {
                 if (nVtxundo < 0 || nVtxundo >= (int)blockUndo.vtxundo.size()) {
@@ -2176,7 +2178,7 @@ static bool WriteUndoDataForBlock(const CBlockUndo& blockundo, CValidationState&
 static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck() {
-    RenameThread("particl-scriptch");
+    RenameThread("capricoinplus-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -2235,7 +2237,7 @@ static bool IsScriptWitnessEnabled(const Consensus::Params& params)
 static unsigned int GetBlockScriptFlags(const CBlockIndex* pindex, const Consensus::Params& consensusparams) EXCLUSIVE_LOCKS_REQUIRED(cs_main) {
     AssertLockHeld(cs_main);
 
-    if (fParticlMode) {
+    if (fCapricoinPlusMode) {
         unsigned int flags = SCRIPT_VERIFY_P2SH;
         flags |= SCRIPT_VERIFY_DERSIG;
         flags |= SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY;
@@ -2357,7 +2359,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     bool fIsGenesisBlock = blockHash == chainparams.GetConsensus().hashGenesisBlock;
     // Special case for the genesis block, skipping connection of its transactions
     // (its coinbase is unspendable)
-    if (!fParticlMode  // genesis coinbase is spendable when in Particl mode
+    if (!fCapricoinPlusMode  // genesis coinbase is spendable when in Capricoin+ mode
         && fIsGenesisBlock) {
         if (!fJustCheck)
             view.SetBestBlock(pindex->GetBlockHash(), pindex->nHeight);
@@ -2396,7 +2398,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     LogPrint(BCLog::BENCH, "    - Sanity checks: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime1 - nTimeStart), nTimeCheck * MICRO, nTimeCheck * MILLI / nBlocksTotal);
 
     bool fEnforceBIP30 = true;
-    if (!fParticlMode)
+    if (!fCapricoinPlusMode)
     {
         // Do not allow blocks that contain transactions which 'overwrite' older transactions,
         // unless those are already completely spent.
@@ -2490,7 +2492,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     }
 
     int nLockTimeFlags = 0;
-    if (fParticlMode || VersionBitsState(pindex->pprev, consensus, Consensus::DEPLOYMENT_CSV, versionbitscache) == ThresholdState::ACTIVE) {
+    if (fCapricoinPlusMode || VersionBitsState(pindex->pprev, consensus, Consensus::DEPLOYMENT_CSV, versionbitscache) == ThresholdState::ACTIVE) {
         nLockTimeFlags |= LOCKTIME_VERIFY_SEQUENCE;
     }
 
@@ -2511,7 +2513,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     int64_t nAnonIn = 0;
     int64_t nStakeReward = 0;
 
-    blockundo.vtxundo.reserve(block.vtx.size() - (fParticlMode ? 0 : 1));
+    blockundo.vtxundo.reserve(block.vtx.size() - (fCapricoinPlusMode ? 0 : 1));
 
     std::vector<PrecomputedTransactionData> txdata;
     txdata.reserve(block.vtx.size()); // Required so that pointers to individual PrecomputedTransactionData don't get invalidated
@@ -2565,7 +2567,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                                  REJECT_INVALID, "bad-txns-nonfinal");
             }
 
-            if (tx.IsParticlVersion()
+            if (tx.IsCapricoinPlusVersion()
                 && (fAddressIndex || fSpentIndex)) {
                 // Update spent inputs for insight
                 for (size_t j = 0; j < tx.vin.size(); j++) {
@@ -2736,11 +2738,10 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     if (!control.Wait())
         return state.DoS(100, error("%s: CheckQueue failed", __func__), REJECT_INVALID, "block-validation-failed");
 
-    if (fParticlMode) {
+    if (fCapricoinPlusMode) {
         if (block.IsProofOfStake()) { // Only the genesis block isn't proof of stake
             CTransactionRef txCoinstake = block.vtx[0];
             CTransactionRef txPrevCoinstake = nullptr;
-            const DevFundSettings *pDevFundSettings = chainparams.GetDevFundSettings(block.nTime);
             const CAmount nCalculatedStakeReward = Params().GetProofOfStakeReward(pindex->pprev, nFees); // stake_test
 
             if (block.nTime >= consensus.smsg_fee_time) {
@@ -2792,76 +2793,16 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                 }
             }
 
-            if (!pDevFundSettings || pDevFundSettings->nMinDevStakePercent <= 0) {
+            if (pindex->pprev->nHeight > 0) { // Genesis block is pow
                 if (nStakeReward < 0 || nStakeReward > nCalculatedStakeReward) {
                     return state.DoS(100, error("%s: Coinstake pays too much(actual=%d vs calculated=%d)", __func__, nStakeReward, nCalculatedStakeReward), REJECT_INVALID, "bad-cs-amount");
                 }
-            } else {
-                assert(pDevFundSettings->nMinDevStakePercent <= 100);
-
-                CAmount nDevBfwd = 0, nDevCfwdCheck = 0;
-                CAmount nMinDevPart = (nCalculatedStakeReward * pDevFundSettings->nMinDevStakePercent) / 100;
-                CAmount nMaxHolderPart = nCalculatedStakeReward - nMinDevPart;
-                if (nMinDevPart < 0 || nMaxHolderPart < 0) {
-                    return state.DoS(100, error("%s: Bad coinstake split amount (foundation=%d vs reward=%d)", __func__, nMinDevPart, nMaxHolderPart), REJECT_INVALID, "bad-cs-amount");
+                if (!txPrevCoinstake && !coinStakeCache.GetCoinStake(pindex->pprev->GetBlockHash(), txPrevCoinstake)) {
+                    return state.DoS(100, error("%s: Failed to get previous coinstake.", __func__), REJECT_INVALID, "bad-cs-prev");
                 }
-
-                if (pindex->pprev->nHeight > 0) { // Genesis block is pow
-                    if (!txPrevCoinstake
-                        && !coinStakeCache.GetCoinStake(pindex->pprev->GetBlockHash(), txPrevCoinstake)) {
-                        return state.DoS(100, error("%s: Failed to get previous coinstake.", __func__), REJECT_INVALID, "bad-cs-prev");
-                    }
-
-                    assert(txPrevCoinstake->IsCoinStake()); // Sanity check
-                    if (!txPrevCoinstake->GetDevFundCfwd(nDevBfwd)) {
-                        nDevBfwd = 0;
-                    }
-                }
-
-                if (pindex->nHeight % pDevFundSettings->nDevOutputPeriod == 0) {
-                    // Fund output must exist and match cfwd, cfwd data output must be unset
-                    // nStakeReward must == nDevBfwd + nCalculatedStakeReward
-
-                    if (nStakeReward != nDevBfwd + nCalculatedStakeReward) {
-                        return state.DoS(100, error("%s: Bad stake-reward (actual=%d vs expected=%d)", __func__, nStakeReward, nDevBfwd + nCalculatedStakeReward), REJECT_INVALID, "bad-cs-amount");
-                    }
-
-                    CTxDestination dfDest = CBitcoinAddress(pDevFundSettings->sDevFundAddresses).Get();
-                    if (dfDest.type() == typeid(CNoDestination)) {
-                        return error("%s: Failed to get foundation fund destination: %s.", __func__, pDevFundSettings->sDevFundAddresses);
-                    }
-                    CScript devFundScriptPubKey = GetScriptForDestination(dfDest);
-
-                    // Output 1 must be to the dev fund
-                    const CTxOutStandard *outputDF = txCoinstake->vpout[1]->GetStandardOutput();
-                    if (!outputDF) {
-                        return state.DoS(100, error("%s: Bad foundation fund output.", __func__), REJECT_INVALID, "bad-cs");
-                    }
-                    if (outputDF->scriptPubKey != devFundScriptPubKey) {
-                        return state.DoS(100, error("%s: Bad foundation fund output script.", __func__), REJECT_INVALID, "bad-cs");
-                    }
-                    if (outputDF->nValue < nDevBfwd + nMinDevPart) { // Max value is clamped already
-                        return state.DoS(100, error("%s: Bad foundation-reward (actual=%d vs minfundpart=%d)", __func__, nStakeReward, nDevBfwd + nMinDevPart), REJECT_INVALID, "bad-cs-fund-amount");
-                    }
-                    if (txCoinstake->GetDevFundCfwd(nDevCfwdCheck)) {
-                        return state.DoS(100, error("%s: Coinstake foundation cfwd must be unset.", __func__), REJECT_INVALID, "bad-cs-cfwd");
-                    }
-                } else {
-                    // Ensure cfwd data output is correct and nStakeReward is <= nHolderPart
-                    // cfwd must == nDevBfwd + (nCalculatedStakeReward - nStakeReward) // Allowing users to set a higher split
-
-                    if (nStakeReward < 0 || nStakeReward > nMaxHolderPart) {
-                        return state.DoS(100, error("%s: Bad stake-reward (actual=%d vs maxholderpart=%d)", __func__, nStakeReward, nMaxHolderPart), REJECT_INVALID, "bad-cs-amount");
-                    }
-                    CAmount nDevCfwd = nDevBfwd + nCalculatedStakeReward - nStakeReward;
-                    if (!txCoinstake->GetDevFundCfwd(nDevCfwdCheck)
-                        || nDevCfwdCheck != nDevCfwd) {
-                        return state.DoS(100, error("%s: Coinstake foundation fund carried forward mismatch (actual=%d vs expected=%d)", __func__, nDevCfwdCheck, nDevCfwd), REJECT_INVALID, "bad-cs-cfwd");
-                    }
-                }
-
+                assert(txPrevCoinstake->IsCoinStake()); // Sanity check
                 coinStakeCache.InsertCoinStake(blockHash, txCoinstake);
-            }
+            } 
         } else {
             if (block.GetHash() != chainparams.GenesisBlock().GetHash()) {
                 return state.DoS(100, error("%s: Block isn't coinstake or genesis.", __func__), REJECT_INVALID, "bad-cs");
@@ -2869,7 +2810,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
         }
     } else {
         CAmount blockReward = nFees + GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus());
-        if (block.vtx[0]->GetValueOut() > blockReward) // Particl coins are imported as coinbase txns
+        if (block.vtx[0]->GetValueOut() > blockReward) // Capricoin+ coins are imported as coinbase txns
             return state.DoS(100,
                              error("ConnectBlock(): coinbase pays too much (actual=%d vs limit=%d)",
                                    block.vtx[0]->GetValueOut(), blockReward),
@@ -3191,9 +3132,9 @@ void UpdateTip(const CBlockIndex *pindexNew, const CChainParams& chainParams) {
         // Check the version of the last 100 blocks to see if we need to upgrade:
         for (int i = 0; i < 100 && pindex != nullptr; i++)
         {
-            if (fParticlMode)
+            if (fCapricoinPlusMode)
             {
-                if (pindex->nVersion > PARTICL_BLOCK_VERSION)
+                if (pindex->nVersion > CAPRICOINPLUS_BLOCK_VERSION)
                     ++nUpgraded;
             } else
             {
@@ -4054,18 +3995,18 @@ static bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, 
 
 static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
 {
-    if (fParticlMode
-        && !block.IsParticlVersion())
+    if (fCapricoinPlusMode
+        && !block.IsCapricoinPlusVersion())
         return state.DoS(100, false, REJECT_INVALID, "block-version", false, "bad block version");
 
     // Check timestamp
-    if (fParticlMode
+    if (fCapricoinPlusMode
         && !block.hashPrevBlock.IsNull() // allow genesis block to be created in the future
         && block.GetBlockTime() > FutureDrift(GetAdjustedTime()))
         return state.DoS(50, false, REJECT_INVALID, "block-timestamp", false, "block timestamp too far in the future");
 
     // Check proof of work matches claimed amount
-    if (!fParticlMode
+    if (!fCapricoinPlusMode
         && fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
         return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
 
@@ -4184,7 +4125,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     if (block.vtx.empty() || block.vtx.size() * WITNESS_SCALE_FACTOR > MAX_BLOCK_WEIGHT || ::GetSerializeSize(block, PROTOCOL_VERSION | SERIALIZE_TRANSACTION_NO_WITNESS) * WITNESS_SCALE_FACTOR > MAX_BLOCK_WEIGHT)
         return state.DoS(100, false, REJECT_INVALID, "bad-blk-length", false, "size limits failed");
 
-    if (fParticlMode) {
+    if (fCapricoinPlusMode) {
         if (!IsInitialBlockDownload()
             && block.vtx[0]->IsCoinStake()
             && !CheckStakeUnique(block)) {
@@ -4253,7 +4194,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
 bool IsWitnessEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& params)
 {
-    if (fParticlMode) return true;
+    if (fCapricoinPlusMode) return true;
 
     LOCK(cs_main);
     return (VersionBitsState(pindexPrev, params, Consensus::DEPLOYMENT_SEGWIT, versionbitscache) == ThresholdState::ACTIVE);
@@ -4295,7 +4236,7 @@ void UpdateUncommittedBlockStructures(CBlock& block, const CBlockIndex* pindexPr
 std::vector<unsigned char> GenerateCoinbaseCommitment(CBlock& block, const CBlockIndex* pindexPrev, const Consensus::Params& consensusParams)
 {
     std::vector<unsigned char> commitment;
-    if (fParticlMode)
+    if (fCapricoinPlusMode)
         return commitment;
 
     int commitpos = GetWitnessCommitmentIndex(block);
@@ -4332,17 +4273,8 @@ unsigned int GetNextTargetRequired(const CBlockIndex *pindexLast)
     unsigned int nProofOfWorkLimit;
     int nHeight = pindexLast ? pindexLast->nHeight+1 : 0;
 
-    if (nHeight < (int)Params().GetLastImportHeight()) {
-        if (nHeight == 0) {
-            return arith_uint256("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff").GetCompact();
-        }
-        int nLastImportHeight = (int) Params().GetLastImportHeight();
-        arith_uint256 nMaxProofOfWorkLimit = arith_uint256("000000000008ffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        arith_uint256 nMinProofOfWorkLimit = UintToArith256(consensus.powLimit);
-        arith_uint256 nStep = (nMaxProofOfWorkLimit - nMinProofOfWorkLimit) / nLastImportHeight;
-
-        bnProofOfWorkLimit = nMaxProofOfWorkLimit - (nStep * nHeight);
-        nProofOfWorkLimit = bnProofOfWorkLimit.GetCompact();
+    if (nHeight == 0) {
+        return arith_uint256("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff").GetCompact();
     } else {
         bnProofOfWorkLimit = UintToArith256(consensus.powLimit);
         nProofOfWorkLimit = bnProofOfWorkLimit.GetCompact();
@@ -4394,7 +4326,7 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
     const int nHeight = pindexPrev == nullptr ? 0 : pindexPrev->nHeight + 1;
     const Consensus::Params& consensusParams = params.GetConsensus();
 
-    if (fParticlMode && pindexPrev)
+    if (fCapricoinPlusMode && pindexPrev)
     {
         // Check proof-of-stake
         if (block.nBits != GetNextTargetRequired(pindexPrev))
@@ -4449,7 +4381,7 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
 
     // Start enforcing BIP113 (Median Time Past) using versionbits logic.
     int nLockTimeFlags = 0;
-    if (fParticlMode) {
+    if (fCapricoinPlusMode) {
         nLockTimeFlags |= LOCKTIME_MEDIAN_TIME_PAST;
     } else {
         if (VersionBitsState(pindexPrev, consensusParams, Consensus::DEPLOYMENT_CSV, versionbitscache) == ThresholdState::ACTIVE) {
@@ -4469,7 +4401,7 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
         }
     }
 
-    if (fParticlMode) {
+    if (fCapricoinPlusMode) {
         // Enforce rule that the coinbase/coinstake ends with serialized block height
         // genesis block scriptSig size will be different
 
@@ -4529,7 +4461,7 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
         } else
         {
             bool fCheckPOW = true; // TODO: pass properly
-            if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams, nHeight, Params().GetLastImportHeight()))
+            if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams, nHeight))
                 return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
 
             // Enforce rule that the coinbase/ ends with serialized block height
@@ -4546,23 +4478,8 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
         if (nHeight > 0 && !block.vtx[0]->IsCoinStake()) // only genesis block can start with coinbase
             return state.DoS(100, false, REJECT_INVALID, "bad-cs-missing", false, "first tx is not coinstake");
 
-        if (nHeight > 0 // skip genesis
-            && Params().GetLastImportHeight() >= (uint32_t)nHeight)
-        {
-            // 2nd txn must be coinbase
-            if (block.vtx.size() < 2 || !block.vtx[1]->IsCoinBase())
-                return state.DoS(100, false, REJECT_INVALID, "bad-cb", false, "Second txn of import block must be coinbase");
-
-            // Check hash of genesis import txn matches expected hash.
-            uint256 txnHash = block.vtx[1]->GetHash();
-            if (!Params().CheckImportCoinbase(nHeight, txnHash))
-                return state.DoS(100, false, REJECT_INVALID, "bad-cb", false, "Incorrect outputs hash.");
-        } else
-        {
-            // 2nd txn can't be coinbase if block height > GetLastImportHeight
-            if (block.vtx.size() > 1 && block.vtx[1]->IsCoinBase())
-                return state.DoS(100, false, REJECT_INVALID, "bad-cb-multiple", false, "unexpected coinbase");
-        };
+        if (block.vtx.size() > 1 && block.vtx[1]->IsCoinBase())
+            return state.DoS(100, false, REJECT_INVALID, "bad-cb-multiple", false, "unexpected coinbase");
     } else
     {
         if (nHeight >= consensusParams.BIP34Height)
@@ -4913,7 +4830,7 @@ bool CChainState::AcceptBlockHeader(const CBlockHeader& block, CValidationState&
     if (hash != chainparams.GetConsensus().hashGenesisBlock) {
         if (miSelf != mapBlockIndex.end()) {
             // Block header is already known.
-            if (fParticlMode && !fRequested && !IsInitialBlockDownload() && state.nodeId >= 0
+            if (fCapricoinPlusMode && !fRequested && !IsInitialBlockDownload() && state.nodeId >= 0
                 && !IncDuplicateHeaders(state.nodeId)) {
                 Misbehaving(state.nodeId, 5, "Too many duplicates");
             }
@@ -4993,7 +4910,7 @@ bool CChainState::AcceptBlockHeader(const CBlockHeader& block, CValidationState&
     }
     if (pindex == nullptr) {
         bool force_accept = true;
-        if (fParticlMode && !IsInitialBlockDownload() && state.nodeId >= 0) {
+        if (fCapricoinPlusMode && !IsInitialBlockDownload() && state.nodeId >= 0) {
             if (!AddNodeHeader(state.nodeId, hash)) {
                 return state.DoS(20, error("%s: DoS limits", __func__), REJECT_INVALID, "dos-limits");
             }
@@ -5110,7 +5027,7 @@ bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, CVali
             || (pindex->pprev->bnStakeModifier.IsNull()
                 && pindex->pprev->GetBlockHash() != chainparams.GetConsensus().hashGenesisBlock)) {
             // Block received out of order
-            if (fParticlMode && !IsInitialBlockDownload()) {
+            if (fCapricoinPlusMode && !IsInitialBlockDownload()) {
                 if (pindex->nFlags & BLOCK_DELAYED) {
                     // Block is already delayed
                     state.nFlags |= BLOCK_DELAYED;
@@ -5207,7 +5124,7 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
             return true;
         }
         if (!ret) {
-            if (fParticlMode) {
+            if (fCapricoinPlusMode) {
                 // Mark block as invalid to prevent re-requesting from peer.
                 // Block will have been added to the block index in AcceptBlockHeader
                 CBlockIndex *pindex = g_chainstate.AddToBlockIndex(*pblock);

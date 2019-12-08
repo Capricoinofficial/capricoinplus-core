@@ -9,7 +9,7 @@
 #define UNUSED
 #endif
 static const char UNUSED *bitcoin_strings[] = {
-QT_TRANSLATE_NOOP("bitcoin-core", "Particl Core"),
+QT_TRANSLATE_NOOP("bitcoin-core", "Capricoin+ Core"),
 QT_TRANSLATE_NOOP("bitcoin-core", "The %s developers"),
 QT_TRANSLATE_NOOP("bitcoin-core", " is spendable from this wallet."),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
@@ -53,9 +53,6 @@ QT_TRANSLATE_NOOP("bitcoin-core", ""
 QT_TRANSLATE_NOOP("bitcoin-core", ""
 "On saving a key from the lookahead pool, save all unsaved keys leading up to "
 "it too. (default: %s)"),
-QT_TRANSLATE_NOOP("bitcoin-core", ""
-"Percentage of block reward donated to the foundation fund, overridden by "
-"system minimum. (default: 0)"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
 "Please check that your computer's date and time are correct! If your clock "
 "is wrong, %s will not work properly."),
@@ -299,7 +296,6 @@ QT_TRANSLATE_NOOP("bitcoin-core", "bech32 must be true when using makeV2."),
 QT_TRANSLATE_NOOP("bitcoin-core", "coldstakingaddress can't be a stealthaddress."),
 QT_TRANSLATE_NOOP("bitcoin-core", "coldstakingaddress must be a string."),
 QT_TRANSLATE_NOOP("bitcoin-core", "extkey must have private key to derive hardened keys."),
-QT_TRANSLATE_NOOP("bitcoin-core", "foundationdonationpercent must be a number."),
 QT_TRANSLATE_NOOP("bitcoin-core", "height must be a number."),
 QT_TRANSLATE_NOOP("bitcoin-core", "height_end must be after height_start."),
 QT_TRANSLATE_NOOP("bitcoin-core", "mindepth must be a number."),

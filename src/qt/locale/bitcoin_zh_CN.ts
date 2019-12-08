@@ -66,11 +66,11 @@
         <translation>收款地址</translation>
     </message>
     <message>
-        <source>These are your Particl addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your Capricoin+ addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>您可以给这些比特币地址付款。在付款之前，务必要检查金额和收款地址是否正确。</translation>
     </message>
     <message>
-        <source>These are your Particl addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your Capricoin+ addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>您可以用这些比特币地址收款。建议在每次交易时，都使用一个新的收款地址。</translation>
     </message>
     <message>
@@ -119,6 +119,10 @@
 </context>
 <context>
     <name>AskPassphraseDialog</name>
+    <message>
+        <source>Unlock For Staking Only</source>
+        <translation>解锁仅用于放样</translation>
+    </message>
     <message>
         <source>Passphrase Dialog</source>
         <translation>密码对话框</translation>
@@ -176,7 +180,7 @@
         <translation>确认钱包加密</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PARTICL&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR CPS&lt;/b&gt;!</source>
         <translation>警告: 如果把钱包加密后又忘记密码，你就会从此&lt;b&gt;失去其中所有的比特币了&lt;/b&gt;！</translation>
     </message>
     <message>
@@ -188,7 +192,7 @@
         <translation>钱包已加密</translation>
     </message>
     <message>
-        <source>Your wallet is now encrypted. Remember that encrypting your wallet cannot fully protect your particl from being stolen by malware infecting your computer.</source>
+        <source>Your wallet is now encrypted. Remember that encrypting your wallet cannot fully protect your capricoinplus from being stolen by malware infecting your computer.</source>
         <translation>你的钱包现在已被加密。请记住，对钱包进行加密仍然不能完全防止感染电脑的恶意软件偷取你的比特币。</translation>
     </message>
     <message>
@@ -241,6 +245,15 @@
 </context>
 <context>
     <name>BitcoinGUI</name>
+    <message>
+        <source>&amp;HD Wallet...</source>
+        <translation>&amp;分层确定性钱包...</translation>
+    </message>
+    <message>
+        <source>&amp;Staking Setup</source>
+        <translation>&amp;托管设置</translation>
+    </message>
+
     <message>
         <source>Sign &amp;message...</source>
         <translation>消息签名(&amp;M)...</translation>
@@ -342,7 +355,7 @@
         <translation>代理已被&lt;b&gt;启用&lt;/b&gt;：%1</translation>
     </message>
     <message>
-        <source>Send coins to a Particl address</source>
+        <source>Send coins to a Capricoin+ address</source>
         <translation>向一个比特币地址发送比特币</translation>
     </message>
     <message>
@@ -366,7 +379,7 @@
         <translation>验证消息(&amp;V)...</translation>
     </message>
     <message>
-        <source>Particl</source>
+        <source>Capricoins+</source>
         <translation>比特币</translation>
     </message>
     <message>
@@ -390,11 +403,11 @@
         <translation>对钱包中的私钥加密</translation>
     </message>
     <message>
-        <source>Sign messages with your Particl addresses to prove you own them</source>
+        <source>Sign messages with your Capricoin+ addresses to prove you own them</source>
         <translation>用比特币地址关联的私钥为消息签名，以证明您拥有这个比特币地址</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Particl addresses</source>
+        <source>Verify messages to ensure they were signed with specified Capricoin+ addresses</source>
         <translation>校验消息，确保该消息是由指定的比特币地址所有者签名的</translation>
     </message>
     <message>
@@ -414,8 +427,8 @@
         <translation>分页工具栏</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and particl: URIs)</source>
-        <translation>请求支付 (生成二维码和 particl: URI)</translation>
+        <source>Request payments (generates QR codes and capricoinplus: URIs)</source>
+        <translation>请求支付 (生成二维码和 capricoinplus: URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -426,15 +439,15 @@
         <translation>显示用过的接收地址和标签的列表</translation>
     </message>
     <message>
-        <source>Open a particl: URI or payment request</source>
-        <translation>打开一个 particl: URI 或支付请求</translation>
+        <source>Open a capricoinplus: URI or payment request</source>
+        <translation>打开一个 capricoinplus: URI 或支付请求</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>命令行选项(&amp;C)</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Particl network</source>
+        <source>%n active connection(s) to Capricoin+ network</source>
         <translation><numerusform>%n 条到比特币网络的活动连接</numerusform></translation>
     </message>
     <message>
@@ -502,7 +515,7 @@
         <translation>关闭钱包</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Particl command-line options</source>
+        <source>Show the %1 help message to get a list with possible Capricoin+ command-line options</source>
         <translation>显示 %1 帮助信息，获取可用命令行选项列表</translation>
     </message>
     <message>
@@ -613,12 +626,24 @@
         <translation>钱包已被&lt;b&gt;加密&lt;/b&gt;，当前为&lt;b&gt;锁定&lt;/b&gt;状态</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Particl can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Capricoin+ can no longer continue safely and will quit.</source>
         <translation>发生严重错误。客户端无法安全地继续运行，即将退出。</translation>
     </message>
 </context>
 <context>
     <name>CoinControlDialog</name>
+    <message>
+        <source>Standard</source>
+        <translation>标准</translation>
+    </message>
+    <message>
+        <source>Blind</source>
+        <translation>隐私的</translation>
+    </message>
+    <message>
+        <source>Anon</source>
+        <translation>匿名的</translation>
+    </message>
     <message>
         <source>Coin Selection</source>
         <translation>币源选择(Coin Selection)</translation>
@@ -771,6 +796,22 @@
 <context>
     <name>EditAddressDialog</name>
     <message>
+        <source>Standard</source>
+        <translation>标准</translation>
+    </message>
+    <message>
+        <source>Standard 256bit</source>
+        <translation>标准256bit</translation>
+    </message>
+    <message>
+        <source>Extended</source>
+        <translation>延长</translation>
+    </message>
+    <message>
+        <source>Stealth</source>
+        <translation>隐形</translation>
+    </message>
+    <message>
         <source>Edit Address</source>
         <translation>编辑地址</translation>
     </message>
@@ -803,7 +844,7 @@
         <translation>编辑付款地址</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Particl address.</source>
+        <source>The entered address "%1" is not a valid Capricoin+ address.</source>
         <translation>输入的地址 %1 并不是有效的比特币地址。</translation>
     </message>
     <message>
@@ -896,7 +937,7 @@
         <translation>使用自定义的数据目录：</translation>
     </message>
     <message>
-        <source>Particl</source>
+        <source>Capricoins+</source>
         <translation>比特币</translation>
     </message>
     <message>
@@ -908,7 +949,7 @@
         <translation>会在此目录中存储约 %1 GB 的数据。</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Particl block chain.</source>
+        <source>%1 will download and store a copy of the Capricoin+ block chain.</source>
         <translation>%1 将会下载并存储比特币区块链。</translation>
     </message>
     <message>
@@ -933,17 +974,168 @@
     </message>
 </context>
 <context>
+    <name>MnemonicDialog</name>
+    <message>
+        <source>HD Wallet Setup</source>
+        <translation>分层确定性钱包设置</translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation>导入</translation>
+    </message>
+    <message>
+        <source>Import Recovery Phrase</source>
+        <translation>导入恢复字段</translation>
+    </message>
+    <message>
+        <source>Enter your BIP39 compliant Recovery Phrase/Mnemonic - Typing your own words will probably not work how you expect, since the words require a particular structure (the last word is a checksum).</source>
+        <translation>输入符合BIP39的恢复密码/助记符— 输入你的密码，但显示出来的密码会不尽相同因为密码的构成需要特定的结构(最后一个是校验和，校验和是数据传送时采用的一种校正数据错误的一种方式)</translation>
+    </message>
+    <message>
+        <source>Recovery Passphrase </source>
+        <translation>恢复密码口令 </translation>
+    </message>
+    <message>
+        <source>Import Chain</source>
+        <translation>导入链</translation>
+    </message>
+    <message>
+        <source>Only needed if you&apos;re importing </source>
+        <translation>只有在导入过程才需要</translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation>提示</translation>
+    </message>
+    <message>
+        <source>Please ensure you backup your Recovery Phrase and Passphrase - they are not recoverable!</source>
+        <translation>请确保你已备份好已恢复的密码和密码口令—因为不能被找回</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation>创建</translation>
+    </message>
+    <message>
+        <source>Create New Recovery Phrase</source>
+        <translation>创建新的恢复密码</translation>
+    </message>
+    <message>
+        <source>This is your randomly generated Recovery Phrase/Mnemonic</source>
+        <translation>所复原的密码随机产生</translation>
+    </message>
+    <message>
+        <source>Bytes of Entropy </source>
+        <translation>熵字节</translation>
+    </message>
+    <message>
+        <source>Entropy is an advanced feature. Your mnemonic may be insecure if this feature is used incorrectly.</source>
+        <translation>熵是较前卫先进的功能，若未被正确使用很有可能存在密码不安全的隐患</translation>
+    </message>
+    <message>
+        <source>Select your language</source>
+        <translation>选择语言</translation>
+    </message>
+    <message>
+        <source>English</source>
+        <translation>英语</translation>
+    </message>
+    <message>
+        <source>French</source>
+        <translation>法语</translation>
+    </message>
+    <message>
+        <source>Japanese</source>
+        <translation>日语</translation>
+    </message>
+    <message>
+        <source>Spanish</source>
+        <translation>西班牙语</translation>
+    </message>
+    <message>
+        <source>Chinese_s</source>
+        <translation>简体中文</translation>
+    </message>
+    <message>
+        <source>Chinese Simplified</source>
+        <translation>简体中文</translation>
+    </message>
+    <message>
+        <source>Chinese_t</source>
+        <translation>繁体中文</translation>
+    </message>
+    <message>
+        <source>Chinese Traditional</source>
+        <translation>繁体中文</translation>
+    </message>
+    <message>
+        <source>Italian</source>
+        <translation>意大利语</translation>
+    </message>
+    <message>
+        <source>Korean</source>
+        <translation>意大利语</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation>语言</translation>
+    </message>
+    <message>
+        <source>Generate</source>
+        <translation>生成</translation>
+    </message>
+    <message>
+        <source>Hardware Device</source>
+        <translation>硬盘</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation>路径</translation>
+    </message>
+    <message>
+        <source>Path to derive account from, if not using default.</source>
+        <translation>若不使用默认设置，可使用账户衍生路径</translation>
+    </message>
+    <message>
+        <source>Notes  </source>
+        <translation>备注 </translation>
+    </message>
+    <message>
+        <source>Open capricoinplus app before importing, confirm on device if prompted and wait for chain rescan to complete.</source>
+        <translation>在导入之前先打开Capricoin+ app，在设备上确认是否有提示，待链重扫描完成。</translation>
+    </message>
+    <message>
+        <source>Import account from hardware device</source>
+        <translation>从硬件设备导入账户</translation>
+    </message>
+    <message>
+        <source>Path to derive account from, if not using default. (optional, default=%1)</source>
+        <translation>若不使用默认设置，可使用账户衍生路径(可选, 默认=%1)</translation>
+    </message>
+    <message>
+        <source>Enter a passphrase to protect your Recovery Phrase. (optional)</source>
+        <translation>输入密码口令保护已恢复的密码。（可选的）</translation>
+    </message>
+    <message>
+        <source>Enter your BIP39 compliant Recovery Phrase/Mnemonic.</source>
+        <translation>输入符合BIP39的恢复密码/助记符。</translation>
+    </message>
+</context>
+<context>
     <name>ModalOverlay</name>
     <message>
         <source>Form</source>
         <translation>表单</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the particl network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the capricoinplus network, as detailed below.</source>
         <translation>近期交易可能尚未显示，因此当前余额可能不准确。以上信息将在与比特币网络完全同步后更正。详情如下</translation>
     </message>
     <message>
-        <source>Attempting to spend particl that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <source>Attempting to spend capricoinplus that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
         <translation>尝试使用受未可见交易影响的余额将不被网络接受。</translation>
     </message>
     <message>
@@ -1008,6 +1200,14 @@
 </context>
 <context>
     <name>OptionsDialog</name>
+    <message>
+        <source>Staking</source>
+        <translation>托管</translation>
+    </message>
+    <message>
+        <source>Reserve Balance</source>
+        <translation>储备余额</translation>
+    </message>
     <message>
         <source>Options</source>
         <translation>选项</translation>
@@ -1125,7 +1325,7 @@
         <translation>动用尚未确认的找零资金(&amp;S)</translation>
     </message>
     <message>
-        <source>Automatically open the Particl client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the Capricoin+ client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation>自动在路由器中打开比特币端口。只有当您的路由器开启了 UPnP 选项时此功能才有效。</translation>
     </message>
     <message>
@@ -1141,7 +1341,7 @@
         <translation>允许流入连接(&amp;G)</translation>
     </message>
     <message>
-        <source>Connect to the Particl network through a SOCKS5 proxy.</source>
+        <source>Connect to the Capricoin+ network through a SOCKS5 proxy.</source>
         <translation>通过 SOCKS5 代理连接比特币网络。</translation>
     </message>
     <message>
@@ -1177,7 +1377,7 @@
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Particl network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <source>Connect to the Capricoin+ network through a separate SOCKS5 proxy for Tor hidden services.</source>
         <translation>访问 Tor 隐藏服务上的比特币网络时使用另一个 SOCKS5 代理。</translation>
     </message>
     <message>
@@ -1283,12 +1483,40 @@
 </context>
 <context>
     <name>OverviewPage</name>
+     <message>
+        <source>Staked:</source>
+        <translation>托管:</translation>
+    </message>
+    <message>
+        <source>Your current staked balance</source>
+        <translation>你目前托管的余额</translation>
+    </message>
+    <message>
+        <source>Reserved:</source>
+        <translation>储备：</translation>
+    </message>
+    <message>
+        <source>Blind:</source>
+        <translation>隐私的：</translation>
+    </message>
+    <message>
+        <source>Your current spendable blinded balance</source>
+        <translation>你目前可用的隐私余额</translation>
+    </message>
+    <message>
+        <source>Anon:</source>
+        <translation>匿名的：</translation>
+    </message>
+    <message>
+        <source>Your current spendable anon balance</source>
+        <translation>你目前可用的匿名余额</translation>
+    </message>
     <message>
         <source>Form</source>
         <translation>表单</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Particl network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Capricoin+ network after a connection is established, but this process has not completed yet.</source>
         <translation>现在显示的消息可能是过期的。在连接上比特币网络节点后，您的钱包将自动与网络同步，但是这个过程还没有完成。</translation>
     </message>
     <message>
@@ -1363,8 +1591,8 @@
         <translation>要求付款时发生错误</translation>
     </message>
     <message>
-        <source>Cannot start particl: click-to-pay handler</source>
-        <translation>无法启动 particl 协议的“
+        <source>Cannot start capricoinplus: click-to-pay handler</source>
+        <translation>无法启动 capricoinplus 协议的“
 一键支付”处理器</translation>
     </message>
     <message>
@@ -1372,8 +1600,8 @@
         <translation>URI 处理</translation>
     </message>
     <message>
-        <source>'particl://' is not a valid URI. Use 'particl:' instead.</source>
-        <translation>‘particl://’不是合法的URI。请使用'particl:'作为替代。</translation>
+        <source>'capricoinplus://' is not a valid URI. Use 'capricoinplus:' instead.</source>
+        <translation>‘capricoinplus://’不是合法的URI。请使用'capricoinplus:'作为替代。</translation>
     </message>
     <message>
         <source>You are using a BIP70 URL which will be unsupported in the future.</source>
@@ -1392,7 +1620,7 @@
         <translation>无效的付款地址 %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Particl address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid Capricoin+ address or malformed URI parameters.</source>
         <translation>无法解析 URI 地址！可能是因为比特币地址无效，或是 URI 参数格式错误。</translation>
     </message>
     <message>
@@ -1490,7 +1718,7 @@
         <translation>金额</translation>
     </message>
     <message>
-        <source>Enter a Particl address (e.g. %1)</source>
+        <source>Enter a Capricoin+ address (e.g. %1)</source>
         <translation>请输入一个比特币地址 (例如 %1)</translation>
     </message>
     <message>
@@ -1942,7 +2170,7 @@
         <translation>消息(&amp;M)：</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Particl network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Capricoin+ network.</source>
         <translation>可在付款请求上备注一条信息，在打开付款请求时可以看到。注意：该消息不是通过比特币网络传送。</translation>
     </message>
     <message>
@@ -2107,6 +2335,26 @@
 <context>
     <name>SendCoinsDialog</name>
     <message>
+        <source>Standard</source>
+        <translation>标准</translation>
+    </message>
+    <message>
+        <source>Blind</source>
+        <translation>隐私的</translation>
+    </message>
+    <message>
+        <source>Anon</source>
+        <translation>匿名的</translation>
+    </message>
+    <message>
+        <source>Send to a coldstake script</source>
+        <translation>转入托管服务</translation>
+    </message>
+    <message>
+        <source>Add &amp;Coldstake Recipient</source>
+        <translation>添加托管接收者</translation>
+    </message>
+    <message>
         <source>Send Coins</source>
         <translation>发送</translation>
     </message>
@@ -2223,7 +2471,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>粉尘：</translation>
     </message>
     <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for particl transactions than the network can process.</source>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for capricoinplus transactions than the network can process.</source>
         <translation>当交易量小于可用区块空间时，矿工和中继节点可能会执行最低手续费率限制。按照这个最低费率来支付手续费也是可以的，但请注意，一旦交易需求超出比特币网络能处理的限度，你的交易可能永远也无法确认。</translation>
     </message>
     <message>
@@ -2371,7 +2619,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation><numerusform>预计在等待 %n 个区块后会有第一个确认。</numerusform></translation>
     </message>
     <message>
-        <source>Warning: Invalid Particl address</source>
+        <source>Warning: Invalid Capricoin+ address</source>
         <translation>警告: 比特币地址无效</translation>
     </message>
     <message>
@@ -2394,7 +2642,39 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
 <context>
     <name>SendCoinsEntry</name>
     <message>
+        <source>Spend  Address:</source>
+        <translation>支付地址:</translation>
+    </message>
+    <message>
+        <source>The Capricoin+ address that will be able to spend the output (must be 256bit)</source>
+        <translation>用于支付资金的Capricoin+地址必须是 256bit</translation>
+    </message>
+    <message>
+        <source>This is a payment to a coldstake script.</source>
+        <translation>托管服务支付</translation>
+    </message>
+    <message>
+        <source>Stake Address:</source>
+        <translation>托管地址:</translation>
+    </message>
+    <message>
+        <source>The Capricoin+ address that will be able to stake the output</source>
+        <translation>Capricoin+地址可用作资金托管</translation>
+    </message>
+    <message>
+        <source>Narration:</source>
+        <translation>概述:</translation>
+    </message>
+    <message>
+        <source>A short message sent over the Capricoin+ network, encrypted if sending to a stealth address or in a blind or anon transaction.</source>
+        <translation>针对在隐私或匿名交易中若发送到隐身地址的，短信息会通过Capricoin+网络已加密的形式发送。</translation>
+    </message>
+    <message>
         <source>A&amp;mount:</source>
+        <translation>金额(&amp;M)</translation>
+    </message>
+    <message>
+        <source>Amount:</source>
         <translation>金额(&amp;M)</translation>
     </message>
     <message>
@@ -2414,7 +2694,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>这是笔正常的支付。</translation>
     </message>
     <message>
-        <source>The Particl address to send the payment to</source>
+        <source>The Capricoin+ address to send the payment to</source>
         <translation>付款目的地址</translation>
     </message>
     <message>
@@ -2434,11 +2714,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>移除此项</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less particl than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less capricoinplus than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation>交易费将从发送总额中扣除。接收人将收到比您在金额框中输入的更少的比特币。如果选中了多个收件人，交易费平分。</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
+        <translation>从金额中减去交易费(&amp;U)</translation>
+    </message>
+    <message>
+        <source>Subtract fee from amount</source>
         <translation>从金额中减去交易费(&amp;U)</translation>
     </message>
     <message>
@@ -2462,8 +2746,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>请为此地址输入一个标签以将它加入用过的地址列表</translation>
     </message>
     <message>
-        <source>A message that was attached to the particl: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Particl network.</source>
-        <translation>particl:URI 附带的备注信息，将会和交易一起存储，备查。 注意：该消息不会通过比特币网络传输。</translation>
+        <source>A message that was attached to the capricoinplus: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Capricoin+ network.</source>
+        <translation>capricoinplus:URI 附带的备注信息，将会和交易一起存储，备查。 注意：该消息不会通过比特币网络传输。</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2507,11 +2791,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>签名消息(&amp;S)</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive particl sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your addresses to prove you can receive capricoinplus sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation>您可以用你的地址对消息/协议进行签名，以证明您可以接收发送到该地址的比特币。注意不要对任何模棱两可或者随机的消息进行签名，以免遭受钓鱼式攻击。请确保消息内容准确的表达了您的真实意愿。</translation>
     </message>
     <message>
-        <source>The Particl address to sign the message with</source>
+        <source>The Capricoin+ address to sign the message with</source>
         <translation>用来对消息签名的地址 </translation>
     </message>
     <message>
@@ -2543,7 +2827,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>复制当前签名至剪切板</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Particl address</source>
+        <source>Sign the message to prove you own this Capricoin+ address</source>
         <translation>签名消息，证明这个地址属于您。</translation>
     </message>
     <message>
@@ -2567,11 +2851,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>请在下面输入接收者地址、消息（确保换行符、空格符、制表符等完全相同）和签名以验证消息。请仔细核对签名信息，以提防中间人攻击。请注意，这只是证明接收方签名的地址，它不能证明任何交易！</translation>
     </message>
     <message>
-        <source>The Particl address the message was signed with</source>
+        <source>The Capricoin+ address the message was signed with</source>
         <translation>消息使用的签名地址</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Particl address</source>
+        <source>Verify the message to ensure it was signed with the specified Capricoin+ address</source>
         <translation>验证消息，确保消息是由指定的比特币地址签名过的。</translation>
     </message>
     <message>
@@ -2829,6 +3113,18 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
 </context>
 <context>
     <name>TransactionTableModel</name>
+    <message>
+        <source>Staked</source>
+        <translation>托管</translation>
+    </message>
+    <message>
+        <source>In</source>
+        <translation>进</translation>
+    </message>
+    <message>
+        <source>Out</source>
+        <translation>出</translation>
+    </message>
     <message>
         <source>Date</source>
         <translation>日期</translation>
@@ -3239,8 +3535,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>无法启动HTTP服务，查看日志获取更多信息</translation>
     </message>
     <message>
-        <source>Particl Core</source>
-        <translation>Particl Core</translation>
+        <source>Capricoin+ Core</source>
+        <translation>Capricoin+ Core</translation>
     </message>
     <message>
         <source>The %s developers</source>
@@ -3711,6 +4007,45 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Error</source>
         <translation>错误</translation>
+    </message>
+</context>
+<context>
+    <name>ColdStakingDialog</name>
+    <message>
+        <source>Staking Setup</source>
+        <translation>加载完成</translation>
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation>钱包</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation>未知</translation>
+    </message>
+    <message>
+        <source>Cold staking change address:</source>
+        <translation>托管服务钱包更改:</translation>
+    </message>
+    <message>
+        <source>Set the cold staking address for change outputs.</source>
+        <translation>设置资金托管的地址</translation>
+    </message>
+    <message>
+        <source>Cold staking enabled:</source>
+        <translation>使用托管服务:</translation>
+    </message>
+    <message>
+        <source>Percent in cold staking script:</source>
+        <translation>托管脚本百分比:</translation>
+    </message>
+    <message>
+        <source>Apply</source>
+        <translation>申请</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
     </message>
 </context>
 </TS>

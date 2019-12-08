@@ -1,9 +1,9 @@
-// Copyright (c) 2017 The Particl Core developers
+// Copyright (c) 2017-2019 The Particl Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PARTICL_RCTINDEX_H
-#define PARTICL_RCTINDEX_H
+#ifndef CAPRICOINPLUS_RCTINDEX_H
+#define CAPRICOINPLUS_RCTINDEX_H
 
 #include <primitives/transaction.h>
 
@@ -38,5 +38,5 @@ public:
 };
 
 
-#endif // PARTICL_RCTINDEX_H
+#endif // CAPRICOINPLUS_RCTINDEX_H
 

@@ -3,15 +3,15 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-from test_framework.test_particl import (
-    ParticlTestFramework,
+from test_framework.test_capricoinplus import (
+    CapricoinPlusTestFramework,
     isclose,
 )
 from test_framework.util import connect_nodes
 from test_framework.messages import COIN
 
 
-class SmsgPaidFeeExtTest(ParticlTestFramework):
+class SmsgPaidFeeExtTest(CapricoinPlusTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2

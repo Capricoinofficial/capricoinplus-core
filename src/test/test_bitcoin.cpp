@@ -26,7 +26,7 @@ const std::function<std::string(const char*)> G_TRANSLATION_FUN = nullptr;
 
 FastRandomContext g_insecure_rand_ctx;
 
-extern bool fParticlMode;
+extern bool fCapricoinPlusMode;
 
 std::ostream& operator<<(std::ostream& os, const uint256& num)
 {
@@ -34,10 +34,10 @@ std::ostream& operator<<(std::ostream& os, const uint256& num)
     return os;
 }
 
-BasicTestingSetup::BasicTestingSetup(const std::string& chainName, bool fParticlModeIn)
-    : m_path_root(fs::temp_directory_path() / "test_particl" / strprintf("%lu_%i", (unsigned long)GetTime(), (int)(InsecureRandRange(1 << 30))))
+BasicTestingSetup::BasicTestingSetup(const std::string& chainName, bool fCapricoinPlusModeIn)
+    : m_path_root(fs::temp_directory_path() / "test_capricoinplus" / strprintf("%lu_%i", (unsigned long)GetTime(), (int)(InsecureRandRange(1 << 30))))
 {
-    fParticlMode = fParticlModeIn;
+    fCapricoinPlusMode = fCapricoinPlusModeIn;
 
     SHA256AutoDetect();
     ECC_Start();
@@ -51,7 +51,7 @@ BasicTestingSetup::BasicTestingSetup(const std::string& chainName, bool fParticl
     gArgs.ForceSetArg("-vbparams", strprintf("segwit:0:%d", (int64_t)Consensus::BIP9Deployment::NO_TIMEOUT));
     SelectParams(chainName);
 
-    ResetParams(chainName, fParticlMode);
+    ResetParams(chainName, fCapricoinPlusMode);
 
     noui_connect();
 }
@@ -70,7 +70,7 @@ fs::path BasicTestingSetup::SetDataDir(const std::string& name)
     return ret;
 }
 
-TestingSetup::TestingSetup(const std::string& chainName, bool fParticlModeIn) : BasicTestingSetup(chainName, fParticlModeIn)
+TestingSetup::TestingSetup(const std::string& chainName, bool fCapricoinPlusModeIn) : BasicTestingSetup(chainName, fCapricoinPlusModeIn)
 {
     SetDataDir("tempdir");
     const CChainParams& chainparams = Params();

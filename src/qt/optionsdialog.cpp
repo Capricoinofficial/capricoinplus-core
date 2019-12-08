@@ -110,7 +110,7 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
             ui->lang->addItem(locale.nativeLanguageName() + QString(" (") + langStr + QString(")"), QVariant(langStr));
         }
     }
-    ui->thirdPartyTxUrls->setPlaceholderText("https://example.com/tx/%s");
+    ui->thirdPartyTxUrls->setPlaceholderText("https://explorer.capricoin.org/tx/%s");
 
     ui->unit->setModel(new BitcoinUnits(this));
 
@@ -188,7 +188,7 @@ void OptionsDialog::setModel(OptionsModel *_model)
     connect(ui->lang, static_cast<void (QValueComboBox::*)()>(&QValueComboBox::valueChanged), [this]{ showRestartWarning(); });
     connect(ui->thirdPartyTxUrls, &QLineEdit::textChanged, [this]{ showRestartWarning(); });
 
-    if (fParticlMode) {
+    if (fCapricoinPlusMode) {
         ui->prune->setEnabled(false);
     }
 }

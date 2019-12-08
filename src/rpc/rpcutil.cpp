@@ -1,6 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017 The Particl Core developers
+// Copyright (c) 2017-2019 The Particl Core developers
+// Copyright (c) 2019 The Capricoin+ Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -51,7 +52,7 @@ UniValue CallRPC(std::string args, std::string wallet)
             && (c == ' ' || c == '\t'))
         {
             if (s.empty()) continue; // trim whitespace
-            vArgs.push_back(part::TrimQuotes(s));
+            vArgs.push_back(standard::TrimQuotes(s));
             s.clear();
             continue;
         };
@@ -62,7 +63,7 @@ UniValue CallRPC(std::string args, std::string wallet)
         s.push_back(c);
     };
     if (!s.empty())
-        vArgs.push_back(part::TrimQuotes(s));
+        vArgs.push_back(standard::TrimQuotes(s));
 
 
     std::string strMethod = vArgs[0];

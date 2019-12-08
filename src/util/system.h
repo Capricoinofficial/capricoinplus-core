@@ -39,8 +39,8 @@
 // Application startup time (used for uptime calculation)
 int64_t GetStartupTime();
 
-extern bool fParticlMode;
-extern bool fParticlWallet;
+extern bool fCapricoinPlusMode;
+extern bool fCapricoinPlusWallet;
 
 extern const char * const BITCOIN_CONF_FILENAME;
 
@@ -129,7 +129,7 @@ inline bool IsSwitchChar(char c)
 #endif
 }
 
-namespace part
+namespace standard
 {
     void *memrchr(const void *s, int c, size_t n);
 
@@ -166,8 +166,8 @@ enum class OptionsCategory {
     COMMANDS,
     REGISTER_COMMANDS,
     SMSG,
-    PART_WALLET,
-    PART_STAKING,
+    CAPRICOINPLUS_WALLET,
+    CAPRICOINPLUS_STAKING,
 
     HIDDEN // Always the last option to avoid printing these in the help
 };
@@ -370,7 +370,7 @@ void RenameThread(const char* name);
  */
 template <typename Callable> void TraceThread(const char* name,  Callable func)
 {
-    std::string s = strprintf("particl-%s", name);
+    std::string s = strprintf("capricoinplus-%s", name);
     RenameThread(s.c_str());
     try
     {

@@ -1,4 +1,5 @@
-// Copyright (c) 2017-2018 The Particl Core developers
+// Copyright (c) 2019 The Capricoin+ Core developers
+// Copyright (c) 2017-2019 The Particl Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -19,7 +20,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-BOOST_FIXTURE_TEST_SUITE(particlchain_tests, ParticlBasicTestingSetup)
+BOOST_FIXTURE_TEST_SUITE(capricoinpluschain_tests, CapricoinPlusBasicTestingSetup)
 
 
 BOOST_AUTO_TEST_CASE(oldversion_test)
@@ -51,7 +52,7 @@ BOOST_AUTO_TEST_CASE(signature_test)
     CKeyID id = pk.GetID();
 
     CMutableTransaction txn;
-    txn.nVersion = PARTICL_TXN_VERSION;
+    txn.nVersion = CAPRICOINPLUS_TXN_VERSION;
     txn.nLockTime = 0;
 
     int nBlockHeight = 22;
@@ -66,7 +67,7 @@ BOOST_AUTO_TEST_CASE(signature_test)
     txn.vpout.push_back(out1);
 
     CMutableTransaction txn2;
-    txn2.nVersion = PARTICL_TXN_VERSION;
+    txn2.nVersion = CAPRICOINPLUS_TXN_VERSION;
     txn2.vin.push_back(CTxIn(txn.GetHash(), 0));
 
     std::vector<uint8_t> vchAmount(8);
@@ -80,7 +81,7 @@ BOOST_AUTO_TEST_CASE(signature_test)
     BOOST_CHECK(serror == SCRIPT_ERR_OK);
 }
 
-BOOST_AUTO_TEST_CASE(particlchain_test)
+BOOST_AUTO_TEST_CASE(capricoinpluschain_test)
 {
     SeedInsecureRand();
     CBasicKeyStore keystore;
@@ -95,11 +96,11 @@ BOOST_AUTO_TEST_CASE(particlchain_test)
     CScript script = CScript() << OP_DUP << OP_HASH160 << ToByteVector(id) << OP_EQUALVERIFY << OP_CHECKSIG;
 
     CBlock blk;
-    blk.nVersion = PARTICL_BLOCK_VERSION;
+    blk.nVersion = CAPRICOINPLUS_BLOCK_VERSION;
     blk.nTime = 1487406900;
 
     CMutableTransaction txn;
-    txn.nVersion = PARTICL_TXN_VERSION;
+    txn.nVersion = CAPRICOINPLUS_TXN_VERSION;
     txn.SetType(TXN_COINBASE);
     txn.nLockTime = 0;
     OUTPUT_PTR<CTxOutStandard> out0 = MAKE_OUTPUT<CTxOutStandard>();
@@ -129,7 +130,7 @@ BOOST_AUTO_TEST_CASE(particlchain_test)
 
     CMutableTransaction txnSpend;
 
-    txnSpend.nVersion = PARTICL_BLOCK_VERSION;
+    txnSpend.nVersion = CAPRICOINPLUS_BLOCK_VERSION;
 }
 
 BOOST_AUTO_TEST_CASE(opiscoinstake_test)
@@ -203,7 +204,7 @@ BOOST_AUTO_TEST_CASE(opiscoinstake_test)
     SignatureData sigdataA, sigdataB, sigdataC;
 
     CMutableTransaction txn;
-    txn.nVersion = PARTICL_TXN_VERSION;
+    txn.nVersion = CAPRICOINPLUS_TXN_VERSION;
     txn.SetType(TXN_COINSTAKE);
     txn.nLockTime = 0;
 
@@ -235,7 +236,7 @@ BOOST_AUTO_TEST_CASE(opiscoinstake_test)
     BOOST_CHECK(VerifyScript(scriptSig, script, &sigdataA.scriptWitness, nFlags, MutableTransactionSignatureChecker(&txn, 0, vchAmount), &serror));
 
 
-    txn.nVersion = PARTICL_TXN_VERSION;
+    txn.nVersion = CAPRICOINPLUS_TXN_VERSION;
     txn.SetType(TXN_STANDARD);
     BOOST_CHECK(!txn.IsCoinStake());
 
@@ -311,8 +312,8 @@ BOOST_AUTO_TEST_CASE(varints)
 BOOST_AUTO_TEST_CASE(mixed_input_types)
 {
     CMutableTransaction txn;
-    txn.nVersion = PARTICL_TXN_VERSION;
-    BOOST_CHECK(txn.IsParticlVersion());
+    txn.nVersion = CAPRICOINPLUS_TXN_VERSION;
+    BOOST_CHECK(txn.IsCapricoinPlusVersion());
 
     CAmount txfee;
     int nSpendHeight = 1;
@@ -320,8 +321,8 @@ BOOST_AUTO_TEST_CASE(mixed_input_types)
     CCoinsViewCache inputs(&viewDummy);
 
     CMutableTransaction txnPrev;
-    txnPrev.nVersion = PARTICL_TXN_VERSION;
-    BOOST_CHECK(txnPrev.IsParticlVersion());
+    txnPrev.nVersion = CAPRICOINPLUS_TXN_VERSION;
+    BOOST_CHECK(txnPrev.IsCapricoinPlusVersion());
 
     CScript scriptPubKey;
     txnPrev.vpout.push_back(MAKE_OUTPUT<CTxOutStandard>(1 * COIN, scriptPubKey));
@@ -377,19 +378,5 @@ BOOST_AUTO_TEST_CASE(mixed_input_types)
             BOOST_CHECK(state.GetRejectReason() == "mixed-input-types");
     };
 }
-
-BOOST_AUTO_TEST_CASE(coin_year_reward)
-{
-    BOOST_CHECK(Params().GetCoinYearReward(1529700000) == 5 * CENT);
-    BOOST_CHECK(Params().GetCoinYearReward(1531832399) == 5 * CENT);
-    BOOST_CHECK(Params().GetCoinYearReward(1531832400) == 4 * CENT);    // 2018-07-17 13:00:00
-    BOOST_CHECK(Params().GetCoinYearReward(1563368399) == 4 * CENT);
-    BOOST_CHECK(Params().GetCoinYearReward(1563368400) == 3 * CENT);    // 2019-07-17 13:00:00
-    BOOST_CHECK(Params().GetCoinYearReward(1594904399) == 3 * CENT);
-    BOOST_CHECK(Params().GetCoinYearReward(1594904400) == 2 * CENT);    // 2020-07-16 13:00:00
-    BOOST_CHECK(Params().GetCoinYearReward(1626440400) == 2 * CENT);
-    BOOST_CHECK(Params().GetCoinYearReward(1657976400) == 2 * CENT);
-}
-
 
 BOOST_AUTO_TEST_SUITE_END()

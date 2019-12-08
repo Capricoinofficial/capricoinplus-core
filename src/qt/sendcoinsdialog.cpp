@@ -187,7 +187,7 @@ void SendCoinsDialog::setModel(WalletModel *_model)
 
         // fee section
         for (const int n : confTargets) {
-            ui->confTargetSelector->addItem(tr("%1 (%2 blocks)").arg(GUIUtil::formatNiceTimeOffset(n*Params().GetConsensus().nPowTargetSpacing)).arg(n));
+            ui->confTargetSelector->addItem(tr("%1 (%2 blocks)").arg(GUIUtil::formatNiceTimeOffset(n * Params().GetTargetSpacing())).arg(n));
         }
         connect(ui->confTargetSelector, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SendCoinsDialog::updateSmartFeeLabel);
         connect(ui->confTargetSelector, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SendCoinsDialog::coinControlUpdateLabels);
@@ -576,8 +576,8 @@ void SendCoinsDialog::clear()
         ui->entries->takeAt(0)->widget()->deleteLater();
     }
 
-    ui->cbxTypeFrom->setCurrentIndex(ui->cbxTypeFrom->findText("Part"));
-    ui->cbxTypeTo->setCurrentIndex(ui->cbxTypeTo->findText("Part"));
+    ui->cbxTypeFrom->setCurrentIndex(ui->cbxTypeFrom->findText("Standard"));
+    ui->cbxTypeTo->setCurrentIndex(ui->cbxTypeTo->findText("Standard"));
 
     addEntry();
 
@@ -1027,7 +1027,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
         }
         else if (!IsValidDestination(dest)) // Invalid address
         {
-            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Particl address"));
+            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Capricoin+ address"));
         }
         else // Valid address
         {

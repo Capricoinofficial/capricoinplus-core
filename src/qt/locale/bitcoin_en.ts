@@ -85,12 +85,12 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>These are your Particl addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your Capricoin+ addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>These are your Particl addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your Capricoin+ addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -228,7 +228,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PARTICL&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR CPS&lt;/b&gt;!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -244,7 +244,7 @@
     </message>
     <message>
         <location line="-57"/>
-        <source>Your wallet is now encrypted. Remember that encrypting your wallet cannot fully protect your particl from being stolen by malware infecting your computer.</source>
+        <source>Your wallet is now encrypted. Remember that encrypting your wallet cannot fully protect your capricoinplus from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -443,8 +443,8 @@
     </message>
     <message>
         <location line="-1152"/>
-        <source>Send coins to a Particl address</source>
-        <translation>Send coins to a Particl address</translation>
+        <source>Send coins to a Capricoin+ address</source>
+        <translation>Send coins to a Capricoin+ address</translation>
     </message>
     <message>
         <location line="+67"/>
@@ -473,8 +473,8 @@
     </message>
     <message>
         <location line="+790"/>
-        <source>Particl</source>
-        <translation>Particl</translation>
+        <source>Capricoins+</source>
+        <translation>Capricoins+</translation>
     </message>
     <message>
         <location line="-863"/>
@@ -503,13 +503,13 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>Sign messages with your Particl addresses to prove you own them</source>
-        <translation>Sign messages with your Particl addresses to prove you own them</translation>
+        <source>Sign messages with your Capricoin+ addresses to prove you own them</source>
+        <translation>Sign messages with your Capricoin+ addresses to prove you own them</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Verify messages to ensure they were signed with specified Particl addresses</source>
-        <translation>Verify messages to ensure they were signed with specified Particl addresses</translation>
+        <source>Verify messages to ensure they were signed with specified Capricoin+ addresses</source>
+        <translation>Verify messages to ensure they were signed with specified Capricoin+ addresses</translation>
     </message>
     <message>
         <location line="+125"/>
@@ -533,7 +533,7 @@
     </message>
     <message>
         <location line="-281"/>
-        <source>Request payments (generates QR codes and particl: URIs)</source>
+        <source>Request payments (generates QR codes and capricoinplus: URIs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -548,7 +548,7 @@
     </message>
     <message>
         <location line="+3"/>
-        <source>Open a particl: URI or payment request</source>
+        <source>Open a capricoinplus: URI or payment request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -558,10 +558,10 @@
     </message>
     <message numerus="yes">
         <location line="+606"/>
-        <source>%n active connection(s) to Particl network</source>
+        <source>%n active connection(s) to Capricoin+ network</source>
         <translation>
-            <numerusform>%n active connection to Particl network</numerusform>
-            <numerusform>%n active connections to Particl network</numerusform>
+            <numerusform>%n active connection to Capricoin+ network</numerusform>
+            <numerusform>%n active connections to Capricoin+ network</numerusform>
         </translation>
     </message>
     <message>
@@ -649,7 +649,7 @@
     </message>
     <message>
         <location line="+4"/>
-        <source>Show the %1 help message to get a list with possible Particl command-line options</source>
+        <source>Show the %1 help message to get a list with possible Capricoin+ command-line options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -800,7 +800,7 @@
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+398"/>
-        <source>A fatal error occurred. Particl can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Capricoin+ can no longer continue safely and will quit.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1126,7 +1126,7 @@
     </message>
     <message>
         <location line="+86"/>
-        <source>The entered address &quot;%1&quot; is not a valid Particl address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid Capricoin+ address.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1251,8 +1251,8 @@
     </message>
     <message>
         <location filename="../intro.cpp" line="+22"/>
-        <source>Particl</source>
-        <translation type="unfinished">Particl</translation>
+        <source>Capricoins+</source>
+        <translation type="unfinished">Capricoins+</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1266,7 +1266,7 @@
     </message>
     <message>
         <location line="+8"/>
-        <source>%1 will download and store a copy of the Particl block chain.</source>
+        <source>%1 will download and store a copy of the Capricoin+ block chain.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1455,7 +1455,7 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>Open particl app before importing, confirm on device if prompted and wait for chain rescan to complete.</source>
+        <source>Open capricoinplus app before importing, confirm on device if prompted and wait for chain rescan to complete.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1488,7 +1488,7 @@
     </message>
     <message>
         <location line="+119"/>
-        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the particl network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the capricoinplus network, as detailed below.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1756,8 +1756,8 @@
     </message>
     <message>
         <location line="+30"/>
-        <source>Automatically open the Particl client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatically open the Particl client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
+        <source>Automatically open the Capricoin+ client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatically open the Capricoin+ client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1776,7 +1776,7 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>Connect to the Particl network through a SOCKS5 proxy.</source>
+        <source>Connect to the Capricoin+ network through a SOCKS5 proxy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1824,7 +1824,7 @@
     </message>
     <message>
         <location line="+25"/>
-        <source>Connect to the Particl network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <source>Connect to the Capricoin+ network through a separate SOCKS5 proxy for Tor hidden services.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1964,8 +1964,8 @@
     <message>
         <location line="+62"/>
         <location line="+539"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Particl network after a connection is established, but this process has not completed yet.</source>
-        <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the Particl network after a connection is established, but this process has not completed yet.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Capricoin+ network after a connection is established, but this process has not completed yet.</source>
+        <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the Capricoin+ network after a connection is established, but this process has not completed yet.</translation>
     </message>
     <message>
         <location line="-249"/>
@@ -2103,7 +2103,7 @@
     </message>
     <message>
         <location line="-529"/>
-        <source>Cannot start particl: click-to-pay handler</source>
+        <source>Cannot start capricoinplus: click-to-pay handler</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2118,7 +2118,7 @@
     </message>
     <message>
         <location line="-53"/>
-        <source>&apos;particl://&apos; is not a valid URI. Use &apos;particl:&apos; instead.</source>
+        <source>&apos;capricoinplus://&apos; is not a valid URI. Use &apos;capricoinplus:&apos; instead.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2144,7 +2144,7 @@
     </message>
     <message>
         <location line="+8"/>
-        <source>URI cannot be parsed! This can be caused by an invalid Particl address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid Capricoin+ address or malformed URI parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2277,7 +2277,7 @@
     </message>
     <message>
         <location filename="../guiutil.cpp" line="+108"/>
-        <source>Enter a Particl address (e.g. %1)</source>
+        <source>Enter a Capricoin+ address (e.g. %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2904,7 +2904,7 @@
     <message>
         <location line="-3"/>
         <location line="+37"/>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Particl network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Capricoin+ network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3202,7 +3202,7 @@
     <message>
         <location line="+4"/>
         <location line="+22"/>
-        <source>Part</source>
+        <source>Standard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3301,7 +3301,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+626"/>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for particl transactions than the network can process.</source>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for capricoinplus transactions than the network can process.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3517,7 +3517,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+107"/>
-        <source>Warning: Invalid Particl address</source>
+        <source>Warning: Invalid Capricoin+ address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3580,7 +3580,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="-318"/>
-        <source>The Particl address to send the payment to</source>
+        <source>The Capricoin+ address to send the payment to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3615,7 +3615,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     <message>
         <location line="-1293"/>
         <location line="+83"/>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less particl than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less capricoinplus than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3632,7 +3632,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     <message>
         <location line="-74"/>
         <location line="+96"/>
-        <source>A short message sent over the Particl network, encrypted if sending to a stealth address or in a blind or anon transaction.</source>
+        <source>A short message sent over the Capricoin+ network, encrypted if sending to a stealth address or in a blind or anon transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3647,7 +3647,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+29"/>
-        <source>Subtract fee from amount</source>
+        <source>S&amp;ubtract fee from amount</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3657,13 +3657,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+28"/>
-        <source>The Particl address that will be able to spend the output (must be 256bit)</source>
+        <source>The Capricoin+ address that will be able to spend the output (must be 256bit)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+62"/>
-        <source>Amount:</source>
-        <translation type="unfinished"></translation>
+        <source>A&amp;mount:</source>
+        <translation>A&amp;mount:</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -3672,7 +3672,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+31"/>
-        <source>The Particl address that will be able to stake the output</source>
+        <source>The Capricoin+ address that will be able to stake the output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3692,7 +3692,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+64"/>
-        <source>A message that was attached to the particl: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Particl network.</source>
+        <source>A message that was attached to the capricoinplus: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Capricoin+ network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3749,12 +3749,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+6"/>
-        <source>You can sign messages/agreements with your addresses to prove you can receive particl sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your addresses to prove you can receive capricoinplus sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>The Particl address to sign the message with</source>
+        <source>The Capricoin+ address to sign the message with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3796,8 +3796,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this Particl address</source>
-        <translation>Sign the message to prove you own this Particl address</translation>
+        <source>Sign the message to prove you own this Capricoin+ address</source>
+        <translation>Sign the message to prove you own this Capricoin+ address</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -3827,13 +3827,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+21"/>
-        <source>The Particl address the message was signed with</source>
+        <source>The Capricoin+ address the message was signed with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+37"/>
-        <source>Verify the message to ensure it was signed with the specified Particl address</source>
-        <translation>Verify the message to ensure it was signed with the specified Particl address</translation>
+        <source>Verify the message to ensure it was signed with the specified Capricoin+ address</source>
+        <translation>Verify the message to ensure it was signed with the specified Capricoin+ address</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -4749,8 +4749,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="-258"/>
-        <source>Particl Core</source>
-        <translation type="unfinished">Particl Core</translation>
+        <source>Capricoin+ Core</source>
+        <translation type="unfinished">Capricoin+ Core</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -5691,11 +5691,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     <message>
         <location line="+1"/>
         <source>extkey must have private key to derive hardened keys.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>foundationdonationpercent must be a number.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

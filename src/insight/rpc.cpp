@@ -1,4 +1,5 @@
-// Copyright (c) 2018-2019 The Particl Core developers
+// Copyright (c) 2019 The Capricoin+ Core developers
+// Copyright (c) 2017-2019 The Particl Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -1059,13 +1060,6 @@ UniValue getblockreward(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_MISC_ERROR, "Block not found on disk");
     }
 
-    const DevFundSettings *devfundconf = Params().GetDevFundSettings(pblockindex->GetBlockTime());
-    CScript devFundScriptPubKey;
-    if (devfundconf) {
-        CTxDestination dest = DecodeDestination(devfundconf->sDevFundAddresses);
-        devFundScriptPubKey = GetScriptForDestination(dest);
-    }
-
     const auto &tx = block.vtx[0];
 
     UniValue outputs(UniValue::VARR);
@@ -1079,11 +1073,6 @@ UniValue getblockreward(const JSONRPCRequest& request)
         pushScript(output, "script", txout->GetPScriptPubKey());
         output.pushKV("value", ValueFromAmount(txout->GetValue()));
         outputs.push_back(output);
-
-        if (devfundconf && *txout->GetPScriptPubKey() == devFundScriptPubKey) {
-            value_foundation += txout->GetValue();
-            continue;
-        }
 
         value_out += txout->GetValue();
     }

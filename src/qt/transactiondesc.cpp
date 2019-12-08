@@ -111,7 +111,7 @@ QString TransactionDesc::toHTML(interfaces::Node& node, interfaces::Wallet& wall
         strHTML += "<p>";
 
         std::string sDetails = rv["details"].write(1);
-        part::ReplaceStrInPlace(sDetails, "\n", "<br>");
+        standard::ReplaceStrInPlace(sDetails, "\n", "<br>");
         strHTML += QString::fromStdString(sDetails);
 
         strHTML += "</p>";

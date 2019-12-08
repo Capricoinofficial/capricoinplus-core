@@ -8,7 +8,7 @@ import json
 import subprocess
 import textwrap
 
-from test_framework.test_particl import ParticlTestFramework
+from test_framework.test_capricoinplus import CapricoinPlusTestFramework
 from test_framework.authproxy import JSONRPCException
 from test_framework.util import assert_raises_rpc_error, assert_equal
 
@@ -35,7 +35,7 @@ def read_dump(file_name):
     return sJson, nLines
 
 
-class WalletParticlTest(ParticlTestFramework):
+class WalletCapricoinPlusTest(CapricoinPlusTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 4
@@ -49,13 +49,13 @@ class WalletParticlTest(ParticlTestFramework):
         self.add_nodes(self.num_nodes, extra_args=self.extra_args)
         self.start_nodes()
 
-    def particl_wallet_process(self, *args):
-        binary = self.config["environment"]["BUILDDIR"] + '/src/particl-wallet' + self.config["environment"]["EXEEXT"]
+    def capricoinplus_wallet_process(self, *args):
+        binary = self.config["environment"]["BUILDDIR"] + '/src/capricoinplus-wallet' + self.config["environment"]["EXEEXT"]
         args = ['-datadir={}'.format(self.nodes[0].datadir), '-regtest'] + list(args)
         return subprocess.Popen([binary] + args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 
     def assert_tool_output(self, output, *args):
-        p = self.particl_wallet_process(*args)
+        p = self.capricoinplus_wallet_process(*args)
         stdout, stderr = p.communicate()
         assert_equal(p.poll(), 0)
         assert_equal(stderr, '')
@@ -693,7 +693,7 @@ class WalletParticlTest(ParticlTestFramework):
         w_rpc = nodes[0].get_wallet_rpc('new_wallet_with_privkeys')
         ek_list = w_rpc.extkey('list', True)
 
-        self.log.info('Test particl-wallet')
+        self.log.info('Test capricoinplus-wallet')
         out = textwrap.dedent('''\
             Wallet info
             ===========
@@ -731,5 +731,5 @@ class WalletParticlTest(ParticlTestFramework):
 
 
 if __name__ == '__main__':
-    WalletParticlTest().main()
+    WalletCapricoinPlusTest().main()
 

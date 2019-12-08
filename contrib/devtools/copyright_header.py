@@ -110,6 +110,7 @@ EXPECTED_HOLDER_NAMES = [
     "The BlackCoin developers\n",
     "The ShadowCoin developers\n",
     "The Particl Core developers\n",
+    "The Capricoin+ Core developers\n",
 ]
 
 DOMINANT_STYLE_COMPILED = {}

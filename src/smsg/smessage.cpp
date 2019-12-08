@@ -559,7 +559,7 @@ int CSMSG::BuildBucketSet()
             continue;
         }
 
-        if (part::endsWith(fileName, "_wl.dat")) {
+        if (standard::endsWith(fileName, "_wl.dat")) {
             LogPrint(BCLog::SMSG, "Skipping wallet locked file: %s.\n", fileName);
             continue;
         }
@@ -897,7 +897,7 @@ bool CSMSG::Start(std::shared_ptr<CWallet> pwalletIn, std::vector<std::shared_pt
     UnloadAllWallets();
 
     for (const auto &pw : vpwallets) {
-        CHDWallet *const ppartw = GetParticlWallet(pw.get());
+        CHDWallet *const ppartw = GetCapricoinPlusWallet(pw.get());
         if (!ppartw || !ppartw->m_smsg_enabled) {
             continue;
         }
@@ -1954,7 +1954,7 @@ static bool ScanBlock(CSMSG &smsg, const CBlock &block, SecMsgDB &addrpkdb,
     for (const auto &tx : block.vtx) {
         // Harvest public keys from coinstake txns
 
-        if (!tx->IsParticlVersion()) {
+        if (!tx->IsCapricoinPlusVersion()) {
             continue;
         }
 
@@ -2171,7 +2171,7 @@ bool CSMSG::ScanBuckets(bool scan_all)
             continue;
         }
 
-        if (part::endsWith(fileName, "_wl.dat")) {
+        if (standard::endsWith(fileName, "_wl.dat")) {
             // ScanBuckets must be run with unlocked wallet (if any receiving keys are wallet keys), remove any redundant _wl files
             LogPrint(BCLog::SMSG, "Removing wallet locked file: %s.\n", fileName);
             try { fs::remove(itd->path());
@@ -2315,7 +2315,7 @@ int CSMSG::WalletUnlocked(CWallet *pwallet)
 
         std::string fileName = itd->path().filename().string();
 
-        if (!part::endsWith(fileName, "_wl.dat")) {
+        if (!standard::endsWith(fileName, "_wl.dat")) {
             continue;
         }
 
@@ -3580,7 +3580,7 @@ int CSMSG::Validate(const uint8_t *pHeader, const uint8_t *pPayload, uint32_t nP
         return SMSG_INVALID_HASH;
     }
 
-    if (part::memcmp_nta(psmsg->hash, msg_hash.begin(), 4) != 0) {
+    if (standard::memcmp_nta(psmsg->hash, msg_hash.begin(), 4) != 0) {
         LogPrint(BCLog::SMSG, "Checksum mismatch.\n");
         return SMSG_CHECKSUM_MISMATCH;
     }
@@ -3850,7 +3850,7 @@ int CSMSG::Import(SecureMessage *psmsg, std::string &sError, bool setread, bool 
     uint256 msg_hash;
     size_t hash_bytes = psmsg->IsPaidVersion() ? psmsg->nPayload-32 : psmsg->nPayload;
     GetPowHash(psmsg, psmsg->pPayload, hash_bytes, msg_hash);
-    if (part::memcmp_nta(psmsg->hash, msg_hash.begin(), 4) != 0) {
+    if (standard::memcmp_nta(psmsg->hash, msg_hash.begin(), 4) != 0) {
        sError = "Checksum mismatch.";
         return SMSG_CHECKSUM_MISMATCH;
     }
@@ -4184,7 +4184,7 @@ int CSMSG::FundMsg(SecureMessage &smsg, std::string &sError, bool fTestFee, CAmo
         memcpy(&tr.vData[21], &msgFee, 4);
         vec_send.push_back(tr);
 
-        CHDWallet *const pw = GetParticlWallet(pactive_wallet.get());
+        CHDWallet *const pw = GetCapricoinPlusWallet(pactive_wallet.get());
         CTransactionRef tx_new;
         CWalletTx wtx(pactive_wallet.get(), tx_new);
 
@@ -4324,7 +4324,7 @@ int CSMSG::Decrypt(bool fTestOnly, const CKey &keyDest, const CKeyID &address, c
     ctx.Write((uint8_t*) pPayload, nPayload);
     ctx.Finalize(MAC);
 
-    if (part::memcmp_nta(MAC, psmsg->mac, 32) != 0) {
+    if (standard::memcmp_nta(MAC, psmsg->mac, 32) != 0) {
         LogPrint(BCLog::SMSG, "MAC does not match.\n"); // expected if message is not to address on node
         return SMSG_MAC_MISMATCH;
     }

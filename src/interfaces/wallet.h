@@ -292,14 +292,14 @@ public:
     using ReservedBalanceChangedFn = std::function<void(CAmount value)>;
     virtual std::unique_ptr<Handler> handleReservedBalanceChanged(ReservedBalanceChangedFn fn) = 0;
 
-    virtual bool IsParticlWallet() = 0;
+    virtual bool IsCapricoinPlusWallet() = 0;
     virtual CAmount getReserveBalance() = 0;
     virtual bool ownDestination(const CTxDestination &dest) = 0;
     virtual bool isUnlockForStakingOnlySet() = 0;
 
     virtual CAmount getAvailableAnonBalance(const CCoinControl& coin_control) = 0;
     virtual CAmount getAvailableBlindBalance(const CCoinControl& coin_control) = 0;
-    virtual CHDWallet *getParticlWallet() = 0;
+    virtual CHDWallet *getCapricoinPlusWallet() = 0;
     virtual bool setReserveBalance(CAmount nValue) = 0;
     virtual void lockWallet() = 0;
     virtual bool setUnlockedForStaking() = 0;
@@ -392,7 +392,7 @@ struct WalletTx
 
     bool is_record=false;
     MapRecords_t::const_iterator irtx;
-    CHDWallet *partWallet;
+    CHDWallet *standardWallet;
 };
 
 //! Updated transaction status.

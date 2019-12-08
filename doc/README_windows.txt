@@ -1,23 +1,23 @@
-Particl Core
+Capricoin+ Core
 
 Intro
 -----
-Particl is an open source, decentralized privacy platform
+Capricoin+ is an open source, decentralized privacy platform
 built for global person to person eCommerce.
 
 For more information, as well as an immediately useable, binary version of
-the Particl Core software, see https://particl.io.
+the Capricoin+ Core software, see https://capricoin.org.
 
 
 Setup
 -----
-Unpack the files into a directory and run particl-qt.exe.
+Unpack the files into a directory and run capricoinplus-qt.exe.
 
-Particl Core is the original Particl client and it builds the backbone of the network.
-However, it downloads and stores the entire history of Particl transactions;
+Capricoin+ Core is the original Capricoin+ client and it builds the backbone of the network.
+However, it downloads and stores the entire history of Capricoin+ transactions;
 depending on the speed of your computer and network connection, the synchronization
 process can take anywhere from a few hours to a day or more.
 
-See the particl wiki at:
-  https://particl.wiki/
+See the capricoinplus wiki at:
+  https://capricoinplus.wiki/
 for more help and information.

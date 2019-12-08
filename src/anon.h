@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2019 The Particl Core developers
+// Copyright (c) 2017-2019 The Capricoin+ Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file license.txt or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PARTICL_ANON_H
-#define PARTICL_ANON_H
+#ifndef CAPRICOINPLUS_ANON_H
+#define CAPRICOINPLUS_ANON_H
 
 #include <stdint.h>
 #include <sync.h>
@@ -15,14 +15,14 @@ extern RecursiveMutex cs_main;
 class CTxMemPool;
 class CValidationState;
 
-const size_t MIN_RINGSIZE = 3;
+const size_t MIN_RINGSIZE = 1;
 const size_t MAX_RINGSIZE = 32;
 
 const size_t MAX_ANON_INPUTS = 32; // To raise see MLSAG_MAX_ROWS also
 
 const size_t ANON_FEE_MULTIPLIER = 2;
 
-const size_t DEFAULT_RING_SIZE = 5;
+const size_t DEFAULT_RING_SIZE = 1;
 const size_t DEFAULT_INPUTS_PER_SIG = 1;
 
 
@@ -40,4 +40,4 @@ bool RewindToCheckpoint(int nCheckPointHeight, int &nBlocks, std::string &sError
 bool RewindRangeProof(const std::vector<uint8_t> &rangeproof, const std::vector<uint8_t> &commitment, const uint256 &nonce,
                       std::vector<uint8_t> &blind_out, CAmount &value_out);
 
-#endif  // PARTICL_ANON_H
+#endif  // CAPRICOINPLUS_ANON_H

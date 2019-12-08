@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2015 The ShadowCoin developers
-// Copyright (c) 2017-2018 The Particl Core developers
+// Copyright (c) 2017-2019 The Particl Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -87,7 +87,7 @@ static void NormaliseUnicode(std::string &str)
 
 static void NormaliseInput(std::string &str)
 {
-    part::TrimWhitespace(str);
+    standard::TrimWhitespace(str);
     NormaliseUnicode(str);
 };
 
@@ -281,7 +281,7 @@ int MnemonicEncode(int nLanguage, const std::vector<uint8_t> &vEntropy, std::str
     }
 
     if (nLanguage == WLL_JAPANESE) {
-        part::ReplaceStrInPlace(sWordList, " ", "\u3000");
+        standard::ReplaceStrInPlace(sWordList, " ", "\u3000");
     }
 
     return 0;

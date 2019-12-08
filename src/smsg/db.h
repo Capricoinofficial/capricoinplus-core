@@ -2,8 +2,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PARTICL_SMSG_DB_H
-#define PARTICL_SMSG_DB_H
+#ifndef CAPRICOINPLUS_SMSG_DB_H
+#define CAPRICOINPLUS_SMSG_DB_H
 
 #include <leveldb/write_batch.h>
 #include <leveldb/db.h>
@@ -81,4 +81,4 @@ public:
 
 } // namespace smsg
 
-#endif // PARTICL_SMSG_DB_H
+#endif // CAPRICOINPLUS_SMSG_DB_H

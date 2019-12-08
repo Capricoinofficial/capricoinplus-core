@@ -1,4 +1,5 @@
-// Copyright (c) 2017-2018 The Particl Core developers
+// Copyright (c) 2019 The Capricoin+ Core developers
+// Copyright (c) 2017-2019 The Particl Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -29,7 +30,7 @@
 
 struct StakeTestingSetup: public TestingSetup {
     StakeTestingSetup(const std::string& chainName = CBaseChainParams::REGTEST):
-        TestingSetup(chainName, /* fParticlMode */ true)
+        TestingSetup(chainName, /* fCapricoinPlusMode */ true)
     {
         bool fFirstRun;
         pwalletMain = std::make_shared<CHDWallet>(*m_chain, WalletLocation(), WalletDatabase::CreateMock());
@@ -288,9 +289,7 @@ BOOST_AUTO_TEST_CASE(stake_test)
         {
             LOCK(cs_main);
 
-            // Reduce the reward
-            RegtestParams().SetCoinYearReward(1 * CENT);
-            BOOST_CHECK(Params().GetCoinYearReward(0) == 1 * CENT);
+            BOOST_CHECK(Params().GetCoinYearReward() == 2 * CENT);
 
             CValidationState state;
             CCoinsViewCache view(pcoinsTip.get());
@@ -299,10 +298,6 @@ BOOST_AUTO_TEST_CASE(stake_test)
             BOOST_CHECK(state.IsInvalid());
             BOOST_CHECK(state.GetRejectReason() == "bad-cs-amount");
             BOOST_CHECK(prevTipHash == chainActive.Tip()->GetBlockHash());
-
-            // restore the reward
-            RegtestParams().SetCoinYearReward(2 * CENT);
-            BOOST_CHECK(Params().GetCoinYearReward(0) == 2 * CENT);
 
             // block should connect now
             CValidationState clearstate;

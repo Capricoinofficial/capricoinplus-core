@@ -10,7 +10,7 @@
 #include <util/strencodings.h>
 #include <crypto/common.h>
 
-int WITNESS_SCALE_FACTOR = WITNESS_SCALE_FACTOR_PART;
+int WITNESS_SCALE_FACTOR = WITNESS_SCALE_FACTOR_CAPRICOINPLUS;
 
 uint256 CBlockHeader::GetHash() const
 {

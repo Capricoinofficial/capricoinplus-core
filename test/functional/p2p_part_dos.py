@@ -5,7 +5,7 @@
 
 import time
 
-from test_framework.test_particl import ParticlTestFramework
+from test_framework.test_capricoinplus import CapricoinPlusTestFramework
 from test_framework.messages import CBlockHeader, msg_headers
 from test_framework.util import connect_nodes
 
@@ -13,7 +13,7 @@ _compactblocks = __import__('p2p_compactblocks')
 TestP2PConn = _compactblocks.TestP2PConn
 
 
-class DoSTest(ParticlTestFramework):
+class DoSTest(CapricoinPlusTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2

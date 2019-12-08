@@ -1,24 +1,21 @@
-Particl Core integration/staging tree
+Capricoin+ Core integration/staging tree
 =====================================
 
-[![Build Status](https://travis-ci.org/particl/particl-core.svg?branch=master)](https://travis-ci.org/particl/particl-core)
+https://capricoin.org
 
-https://particl.io
-
-What is Particl?
+What is Capricoin+?
 ----------------
 
-An open source, decentralized privacy platform
-built for global person to person eCommerce.
+**Capricoin+ is an incompatible upgrade with the old and deprecated [Capricoin](https://github.com/Capricoinofficial/Capricoin), you can swap your old capricoins on https://capricoin.org/upgrade**  
 
 For more information, as well as an immediately useable, binary version of
-the Particl Core software, see https://particl.io.
+the Capricoin+ Core software, see https://capricoin.org.
 
 
 Getting Started
 ---------------
 
-A new Particl wallet will need an HD master key loaded and an initial account
+A new Capricoin+ wallet will need an HD master key loaded and an initial account
 derived before it will be functional.
 
 The GUI programs will guide you through the initial setup.
@@ -29,22 +26,22 @@ Loading the new mnemonic with the extkeyimportmaster command will setup the
 master HD key and first account.
 
 To create an initial new HD master key and account from random data, start
-particld or particl-qt with the parameter: -createdefaultmasterkey.
+capricoinplusd or capricoinplus-qt with the parameter: -createdefaultmasterkey.
 
 Remember to backup your passphrase and/or wallet.dat file!
 
 License
 -------
 
-Particl Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+Capricoin+ Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
 -------------------
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/particl/particl-core/tags) are created
-regularly to indicate new official, stable release versions of Particl Core.
+completely stable. [Tags](https://github.com/Capricoinofficial/capricoinplus-core/tags) are created
+regularly to indicate new official, stable release versions of Capricoin+ Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md)
 and useful hints for developers can be found in [doc/developer-notes.md](doc/developer-notes.md).

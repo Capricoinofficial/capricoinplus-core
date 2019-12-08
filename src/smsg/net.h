@@ -1,9 +1,9 @@
-// Copyright (c) 2018-2019 The Particl Core developers
+// Copyright (c) 2017-2019 The Particl Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PARTICL_SMSG_NET_H
-#define PARTICL_SMSG_NET_H
+#ifndef CAPRICOINPLUS_SMSG_NET_H
+#define CAPRICOINPLUS_SMSG_NET_H
 
 #include <sync.h>
 
@@ -55,4 +55,4 @@ public:
     }
 };
 
-#endif // PARTICL_SMSG_NET_H
+#endif // CAPRICOINPLUS_SMSG_NET_H

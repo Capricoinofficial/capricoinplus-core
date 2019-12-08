@@ -90,21 +90,19 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&
     return true;
 }
 
-bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params& params,
-    int nBlockHeight, int nLastImportHeight)
+bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params& params, int nBlockHeight)
 {
     arith_uint256 bnProofOfWorkLimit;
-    if (nBlockHeight < nLastImportHeight)
+    if (nBlockHeight == 0)
     {
         arith_uint256 nMinProofOfWorkLimit = arith_uint256("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        arith_uint256 nMaxProofOfWorkLimit = UintToArith256(params.powLimit);
-        arith_uint256 nStep = ((nMaxProofOfWorkLimit - nMinProofOfWorkLimit) / nLastImportHeight);
-        bnProofOfWorkLimit = nMinProofOfWorkLimit + nStep * nBlockHeight;
-    } else
+        bnProofOfWorkLimit = nMinProofOfWorkLimit;
+    }
+    else
     {
         bnProofOfWorkLimit = UintToArith256(params.powLimit);
     };
-    
+
     bool fNegative;
     bool fOverflow;
     arith_uint256 bnTarget;

@@ -3,12 +3,12 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-from test_framework.test_particl import ParticlTestFramework
+from test_framework.test_capricoinplus import CapricoinPlusTestFramework
 from test_framework.util import connect_nodes_bi
 from test_framework.authproxy import JSONRPCException
 
 
-class FilterTransactionsTest(ParticlTestFramework):
+class FilterTransactionsTest(CapricoinPlusTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 3
@@ -45,12 +45,12 @@ class FilterTransactionsTest(ParticlTestFramework):
         #targetExternal = nodes[1].getnewextaddress('target external')
         stakingAddress = nodes[2].getnewaddress('staking')
 
-        # simple PART transaction
+        # simple CPS transaction
         nodes[0].sendtoaddress(targetAddress, 10)
         self.stakeBlocks(1)
         nodes[1].sendtoaddress(selfAddress, 8)
 
-        # PART to BLIND
+        # CPS to BLIND
         nodes[0].sendparttoblind(
             selfStealth,          # address
             20,                   # amount
@@ -60,7 +60,7 @@ class FilterTransactionsTest(ParticlTestFramework):
             'node0 -> node0 p->b' # narrative
         )
 
-        # PART to ANON
+        # CPS to ANON
         nodes[0].sendparttoanon(
             targetStealth,        # address
             20,                   # amount

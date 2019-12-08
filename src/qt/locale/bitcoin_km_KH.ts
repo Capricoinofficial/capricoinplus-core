@@ -151,8 +151,8 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <source>Send coins to a Particl address</source>
-        <translation>ផ្ញើកាក់ទៅកាន់ អាសយដ្ឋាន Particl មួយ</translation>
+        <source>Send coins to a Capricoin+ address</source>
+        <translation>ផ្ញើកាក់ទៅកាន់ អាសយដ្ឋាន Capricoin+ មួយ</translation>
     </message>
     </context>
 <context>

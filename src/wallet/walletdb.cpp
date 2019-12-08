@@ -305,7 +305,7 @@ ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue,
                 return false;
             }
         }
-        else if (strType == "mkey" && !fParticlMode)
+        else if (strType == "mkey" && !fCapricoinPlusMode)
         {
             unsigned int nID;
             ssKey >> nID;
@@ -440,7 +440,7 @@ bool WalletBatch::IsKeyType(const std::string& strType)
 {
     return (strType== "key" || strType == "wkey" ||
             strType == "mkey" || strType == "ckey")
-            || (fParticlMode &&
+            || (fCapricoinPlusMode &&
                 (strType == "eacc" || strType == "ek32"
                 || strType == "eknm" || strType == "sxad" || strType == "espk"));
 }
@@ -680,7 +680,7 @@ void MaybeCompactWalletDB()
     }
 
     // Make this thread recognisable as the wallet flushing thread
-    RenameThread("particl-wallet");
+    RenameThread("capricoinplus-wallet");
 
     for (const std::shared_ptr<CWallet>& pwallet : GetWallets()) {
         WalletDatabase& dbh = pwallet->GetDBHandle();
@@ -724,7 +724,7 @@ bool WalletBatch::RecoverKeysOnlyFilter(void *callbackData, CDataStream &ssKey, 
     std::string strType, strErr;
 
     bool fReadOK;
-    if (fParticlMode)
+    if (fCapricoinPlusMode)
     {
         try {
             ssKey >> strType;

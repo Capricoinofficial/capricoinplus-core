@@ -1452,7 +1452,7 @@ static void ThreadMapPort()
             }
         }
 
-        std::string strDesc = "Particl " + FormatFullVersion();
+        std::string strDesc = "Capricoin+ " + FormatFullVersion();
 
         do {
 #ifndef UPNPDISCOVER_SUCCESS

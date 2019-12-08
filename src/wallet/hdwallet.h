@@ -1,9 +1,10 @@
+// Copyright (c) 2019 The Capricoin+ Core developers
 // Copyright (c) 2017-2019 The Particl Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PARTICL_WALLET_HDWALLET_H
-#define PARTICL_WALLET_HDWALLET_H
+#ifndef CAPRICOINPLUS_WALLET_HDWALLET_H
+#define CAPRICOINPLUS_WALLET_HDWALLET_H
 
 #include <wallet/wallet.h>
 #include <wallet/hdwalletdb.h>
@@ -325,13 +326,13 @@ class CHDWalletBalances
 public:
     void Clear()
     {
-        nPart = 0;
-        nPartUnconf = 0;
-        nPartStaked = 0;
-        nPartImmature = 0;
-        nPartWatchOnly = 0;
-        nPartWatchOnlyUnconf = 0;
-        nPartWatchOnlyStaked = 0;
+        nStandard = 0;
+        nStandardUnconf = 0;
+        nStandardStaked = 0;
+        nStandardImmature = 0;
+        nStandardWatchOnly = 0;
+        nStandardWatchOnlyUnconf = 0;
+        nStandardWatchOnlyStaked = 0;
 
         nBlind = 0;
         nBlindUnconf = 0;
@@ -341,13 +342,13 @@ public:
         nAnonImmature = 0;
     }
 
-    CAmount nPart = 0;
-    CAmount nPartUnconf = 0;
-    CAmount nPartStaked = 0;
-    CAmount nPartImmature = 0;
-    CAmount nPartWatchOnly = 0;
-    CAmount nPartWatchOnlyUnconf = 0;
-    CAmount nPartWatchOnlyStaked = 0;
+    CAmount nStandard = 0;
+    CAmount nStandardUnconf = 0;
+    CAmount nStandardStaked = 0;
+    CAmount nStandardImmature = 0;
+    CAmount nStandardWatchOnly = 0;
+    CAmount nStandardWatchOnlyUnconf = 0;
+    CAmount nStandardWatchOnlyStaked = 0;
 
     CAmount nBlind = 0;
     CAmount nBlindUnconf = 0;
@@ -362,7 +363,7 @@ class CHDWallet : public CWallet
 public:
     CHDWallet(interfaces::Chain& chain, const WalletLocation& location, std::unique_ptr<WalletDatabase> dbw_in) : CWallet(chain, location, std::move(dbw_in))
     {
-        m_default_address_type = OutputType::LEGACY; // In Particl segwit is enabled for all types
+        m_default_address_type = OutputType::LEGACY; // In Capricoin+ segwit is enabled for all types
     }
 
     ~CHDWallet()
@@ -785,7 +786,6 @@ public:
     CAmount nStakeCombineThreshold;
     CAmount nStakeSplitThreshold;
     size_t nMaxStakeCombine = 3;
-    int nWalletDevFundCedePercent;
     CBitcoinAddress rewardAddress;
     int nStakeLimitHeight = 0; // for regtest, don't stake above nStakeLimitHeight
 
@@ -858,10 +858,10 @@ int64_t CalculateMaximumSignedTxSize(const CTransaction &tx, const CHDWallet *wa
 
 void RestartStakingThreads();
 
-bool IsParticlWallet(const CKeyStore *win);
-CHDWallet *GetParticlWallet(CKeyStore *win);
-const CHDWallet *GetParticlWallet(const CKeyStore *win);
+bool IsCapricoinPlusWallet(const CKeyStore *win);
+CHDWallet *GetCapricoinPlusWallet(CKeyStore *win);
+const CHDWallet *GetCapricoinPlusWallet(const CKeyStore *win);
 
 
-#endif // PARTICL_WALLET_HDWALLET_H
+#endif // CAPRICOINPLUS_WALLET_HDWALLET_H
 

@@ -24,7 +24,7 @@ CAmount GetMinimumFee(const CWallet& wallet, unsigned int nTxBytes, const CCoinC
 {
     CAmount fee_needed = GetMinimumFeeRate(wallet, coin_control, pool, estimator, feeCalc).GetFee(nTxBytes);
 
-    // Particl
+    // CapricoinPlus
     if (coin_control.fHaveAnonOutputs) {
         fee_needed *= ANON_FEE_MULTIPLIER;
     }

@@ -1,14 +1,14 @@
 *.tar.gz
 
 *.exe
-src/particl
-src/particld
-src/particl-cli
-src/particl-tx
-src/particl-wallet
-src/test/test_particl
-src/test/test_particl_fuzzy
-src/qt/test/test_particl-qt
+src/capricoinplus
+src/capricoinplusd
+src/capricoinplus-cli
+src/capricoinplus-tx
+src/capricoinplus-wallet
+src/test/test_capricoinplus
+src/test/test_capricoinplus_fuzzy
+src/qt/test/test_capricoinplus-qt
 
 # autoreconf
 src/Makefile.in
@@ -52,11 +52,11 @@ src/qt/bitcoin-qt.creator.user
 src/qt/bitcoin-qt.files
 src/qt/bitcoin-qt.includes
 
-src/qt/particl-qt.config
-src/qt/particl-qt.creator
-src/qt/particl-qt.creator.user
-src/qt/particl-qt.files
-src/qt/particl-qt.includes
+src/qt/capricoinplus-qt.config
+src/qt/capricoinplus-qt.creator
+src/qt/capricoinplus-qt.creator.user
+src/qt/capricoinplus-qt.files
+src/qt/capricoinplus-qt.includes
 
 .deps
 .dirstamp
@@ -89,13 +89,13 @@ src/qt/particl-qt.includes
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-particl-qt
-Particl-Qt.app
+capricoinplus-qt
+CapricoinPlus-Qt.app
 background.tiff*
 
 # Unit-tests
 Makefile.test
-particl-qt_test
+capricoinplus-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -108,7 +108,7 @@ build
 *.gcno
 *.gcda
 /*.info
-test_particl.coverage/
+test_capricoinplus.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -123,7 +123,7 @@ test/cache/*
 
 /doc/doxygen/
 
-libparticlconsensus.pc
+libcapricoinplusconsensus.pc
 contrib/devtools/split-debug.sh
 
 # Output from running db4 installation
@@ -131,6 +131,7 @@ db4/
 
 .project
 .vscode
+.vs/*
 
 # clang-check
 *.plist

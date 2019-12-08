@@ -1,0 +1,25 @@
+[Unit]
+Description=Capricoin+ daemon
+After=network.target
+
+[Service]
+User=capricoinplus
+Group=capricoinplus
+
+Type=forking
+PIDFile=/home/capricoinplus/.capricoinplus/capricoinplusd.pid
+ExecStart=/home/capricoinplus/CapricoinPlus/capricoinplusd -daemon -pid=/home/capricoinplus/.capricoinplus/capricoinplusd.pid \
+-conf=/home/capricoinplus/.capricoinplus/capricoinplus.conf -datadir=/home/capricoinplus/.capricoinplus
+
+ExecStop=/home/capricoinplus/CapricoinPlus/capricoinplus-cli -conf=/home/capricoinplus/.capricoinplus/capricoinplus.conf stop
+ExecStop=/usr/bin/sleep 25
+
+Restart=no
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

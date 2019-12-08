@@ -1,9 +1,9 @@
-// Copyright (c) 2018 The Particl Core developers
+// Copyright (c) 2017-2019 The Particl Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PARTICL_USBDEVICE_TREZORDEVICE_H
-#define PARTICL_USBDEVICE_TREZORDEVICE_H
+#ifndef CAPRICOINPLUS_USBDEVICE_TREZORDEVICE_H
+#define CAPRICOINPLUS_USBDEVICE_TREZORDEVICE_H
 
 #include <usbdevice/usbdevice.h>
 
@@ -75,4 +75,4 @@ protected:
 
 } // usb_device
 
-#endif // PARTICL_USBDEVICE_TREZORDEVICE_H
+#endif // CAPRICOINPLUS_USBDEVICE_TREZORDEVICE_H

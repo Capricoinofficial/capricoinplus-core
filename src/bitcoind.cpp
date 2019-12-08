@@ -32,8 +32,8 @@ const std::function<std::string(const char*)> G_TRANSLATION_FUN = nullptr;
  *
  * \section intro_sec Introduction
  *
- * This is the developer documentation of the reference client for an experimental new digital currency called Particl (https://www.particl.io/),
- * which enables instant payments to anyone, anywhere in the world. Particl uses peer-to-peer technology to operate
+ * This is the developer documentation of the reference client for an experimental new digital currency called Capricoin+ (https://www.capricoin.org/),
+ * which enables instant payments to anyone, anywhere in the world. Capricoin+ uses peer-to-peer technology to operate
  * with no central authority: managing transactions and issuing money are carried out collectively by the network.
  *
  * The software is a community-driven open source project, released under the MIT license.
@@ -89,7 +89,7 @@ static bool AppInit(int argc, char* argv[])
         }
         else
         {
-            strUsage += "\nUsage:  particld [options]                     Start " PACKAGE_NAME " Daemon\n";
+            strUsage += "\nUsage:  capricoinplusd [options]                     Start " PACKAGE_NAME " Daemon\n";
             strUsage += "\n" + gArgs.GetHelpMessage();
         }
 
@@ -138,7 +138,7 @@ static bool AppInit(int argc, char* argv[])
         // Error out when loose non-argument tokens are encountered on command line
         for (int i = 1; i < argc; i++) {
             if (!IsSwitchChar(argv[i][0])) {
-                tfm::format(std::cerr, "Error: Command line contains unexpected token '%s', see particld -h for a list of options.\n", argv[i]);
+                tfm::format(std::cerr, "Error: Command line contains unexpected token '%s', see capricoinplusd -h for a list of options.\n", argv[i]);
                 exit(EXIT_FAILURE);
             }
         }
@@ -170,7 +170,7 @@ static bool AppInit(int argc, char* argv[])
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #endif
-            tfm::format(std::cout, "Particl server starting\n");
+            tfm::format(std::cout, "Capricoin+ server starting\n");
 
             // Daemonize
             if (daemon(1, 0)) { // don't chdir (1), do close FDs (0)

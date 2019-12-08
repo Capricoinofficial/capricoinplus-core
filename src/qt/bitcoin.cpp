@@ -64,6 +64,75 @@ Q_IMPORT_PLUGIN(QCocoaIntegrationPlugin);
 #endif
 #endif
 
+struct TranslationTable {
+	const wchar_t *From, *To;
+};
+
+static std::vector<TranslationTable> g_translationTable = {
+	{    L"Bitcoin"		, L"Capricoin+"
+	}, { L"bitcoin"		, L"capricoin+"
+	}, { L"Bitcion"     , L"Capricoin+"
+	}, { L"satoshi"		, L"satoshi"
+	}, { L"sat"		    , L"sat"
+	}, { L"BITCOIN"		, L"CAPRICOIN+"
+    }, { L"BITCOINS"	, L"CAPRICOINS+"
+	}, { L"БИТКОИНЫ"	, L"Capricoin+"		// ru
+	}, { L"биткоины"	, L"capricoin+"		// ru
+	}, { L"біткойни"	, L"capricoin+"		// ua
+	}, { L"БІТКОІНИ"	, L"Capricoin+"		// ua
+	}, { L"Биткоин"		, L"Capricoin+"			// bg
+	}, { L"Биткойн"		, L"Capricoin+"			// bg
+	}, { L"биткойн"		, L"Capricoin+"			// bg
+	}, { L"ビット"	     , L"Capricoin+"	         // jp
+	}, { L"비트"	     , L"Capricoin+"		   // ko
+	}, { L"复述"	     , L"Capricoin+"			     // cn
+	}, { L"بيتكوين"		, L"كابريكوين+"		       // ar
+	}, { L"بتكوين"      , L"كابريكوين+"		       // ar
+	}
+};
+
+static class CapricoinPlusTranslatorInit {
+public:
+	struct QTranslationTable {
+		QString From, To;
+	};
+
+	std::vector<QTranslationTable> m_translationTable;
+
+	CapricoinPlusTranslatorInit()
+	{
+		for (const auto& t : g_translationTable) {
+			QTranslationTable x = { QString::fromWCharArray(t.From), QString::fromWCharArray(t.To) };
+			m_translationTable.push_back(x);
+		}
+	}
+} g_CapricoinPlusTranslatorInit;
+
+class CapricoinPlusTranslator : public QTranslator
+{
+    bool m_isBase;
+public:
+	QString translate(const char *context, const char *sourceText, const char *disambiguation = Q_NULLPTR, int n = -1) const override
+	{
+		auto s = QTranslator::translate(context, sourceText, disambiguation, n);
+        if (strstr(sourceText, "coin")
+            || strstr(sourceText, "COIN")
+            || strstr(sourceText, "sat"))
+        {
+            if (m_isBase && s.isNull())
+                s = QString::fromUtf8(sourceText);
+            for (const auto& t : g_CapricoinPlusTranslatorInit.m_translationTable)
+                s.replace(t.From, t.To);
+        }
+		return s;
+	}
+
+    CapricoinPlusTranslator(bool isBase)
+        : m_isBase(isBase)
+    {
+    }
+};
+
 // Declare meta types used for QMetaObject::invokeMethod
 Q_DECLARE_METATYPE(bool*)
 Q_DECLARE_METATYPE(CAmount)
@@ -398,7 +467,7 @@ void BitcoinApplication::shutdownResult()
 
 void BitcoinApplication::handleRunawayException(const QString &message)
 {
-    QMessageBox::critical(nullptr, "Runaway exception", BitcoinGUI::tr("A fatal error occurred. Particl can no longer continue safely and will quit.") + QString("\n\n") + message);
+    QMessageBox::critical(nullptr, "Runaway exception", BitcoinGUI::tr("A fatal error occurred. Capricoin+ can no longer continue safely and will quit.") + QString("\n\n") + message);
     ::exit(EXIT_FAILURE);
 }
 
@@ -490,7 +559,7 @@ int GuiMain(int argc, char* argv[])
 
     /// 4. Initialization of translations, so that intro dialog is in user's language
     // Now that QSettings are accessible, initialize translations
-    QTranslator qtTranslatorBase, qtTranslator, translatorBase, translator;
+    CapricoinPlusTranslator qtTranslatorBase(true), qtTranslator(false), translatorBase(true), translator(false);
     initTranslations(qtTranslatorBase, qtTranslator, translatorBase, translator);
 
     // Show help message immediately after parsing command-line options (for "-lang") and setting locale,
