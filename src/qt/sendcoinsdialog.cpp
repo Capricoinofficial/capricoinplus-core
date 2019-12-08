@@ -307,9 +307,9 @@ void SendCoinsDialog::on_sendButton_clicked()
 
     if (sTypeFromTranslated.count() > 1) {
         sTypeFrom = sTypeFromTranslated.value(sTypeFromTranslated.length() - 1).toLower();
-        if (sTypeFrom == "(b)") {
+        if (sTypeFrom.contains("(b)",Qt::CaseInsensitive)) {
             sTypeFrom = "blind";
-        } else if(sTypeFrom == "(a)") {
+        } else if(sTypeFrom.contains("(a)",Qt::CaseInsensitive)) {
             sTypeFrom = "anon";
         } else {
             sTypeFrom = "standard";
@@ -317,9 +317,9 @@ void SendCoinsDialog::on_sendButton_clicked()
     } 
     if (sTypeToTranslated.count() > 1) {
         sTypeTo = sTypeToTranslated.value(sTypeToTranslated.length() - 1).toLower();
-        if (sTypeTo == "(b)") {
+        if (sTypeTo.contains("(b)",Qt::CaseInsensitive)) {
             sTypeTo = "blind";
-        } else if(sTypeTo == "(a)") {
+        } else if(sTypeTo.contains("(a)",Qt::CaseInsensitive)) {
             sTypeTo = "anon";
         } else {
             sTypeTo = "standard";
@@ -599,8 +599,8 @@ void SendCoinsDialog::clear()
         ui->entries->takeAt(0)->widget()->deleteLater();
     }
 
-    ui->cbxTypeFrom->setCurrentIndex(ui->cbxTypeFrom->findText("Standard"));
-    ui->cbxTypeTo->setCurrentIndex(ui->cbxTypeTo->findText("Standard"));
+    // ui->cbxTypeFrom->setCurrentIndex(ui->cbxTypeFrom->findText("Standard"));
+    // ui->cbxTypeTo->setCurrentIndex(ui->cbxTypeTo->findText("Standard"));
 
     addEntry();
 

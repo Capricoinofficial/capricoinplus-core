@@ -120,7 +120,7 @@ void ReceiveCoinsDialog::clear()
     ui->reqAmount->clear();
     ui->reqLabel->setText("");
     ui->reqMessage->setText("");
-    ui->cbxAddressType->setCurrentIndex(ui->cbxAddressType->findText("Standard"));
+    // ui->cbxAddressType->setCurrentIndex(ui->cbxAddressType->findText("Standard"));
     updateDisplayUnit();
 }
 
@@ -169,17 +169,17 @@ void ReceiveCoinsDialog::on_receiveButton_clicked()
     QString sAddrType = ui->cbxAddressType->currentText();
     QStringList addrTypeTranslated = ui->cbxAddressType->currentText().split(" ");
     if (addrTypeTranslated.count() > 1) {
-        sAddrType = addrTypeTranslated.value(addrTypeTranslated.length() - 1);
-        if (sAddrType == "(S)") {
-            sAddrType = "Standard";
-        } else if(sAddrType == "(Ext)") {
+        if(sAddrType.contains("(Ext)",Qt::CaseInsensitive)) {
             sAddrType = "Extended";
-        } else if(sAddrType == "(256bit)" || "256bit") {
+        } else if(sAddrType.contains("(256bit)",Qt::CaseInsensitive)) {
             sAddrType = "Standard 256bit";
-        } else if (sAddrType == "(St)") {
+        } else if (sAddrType.contains("(St)",Qt::CaseInsensitive)) {
             sAddrType = "Stealth";
+        } else {
+            sAddrType = "Standard";
         }
-    } 
+    }
+    
     if (sAddrType == "Stealth")
         addrType = AddressTableModel::ADDR_STEALTH;
     else
