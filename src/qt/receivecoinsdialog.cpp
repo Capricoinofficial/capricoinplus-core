@@ -169,11 +169,11 @@ void ReceiveCoinsDialog::on_receiveButton_clicked()
     QString sAddrType = ui->cbxAddressType->currentText();
     QStringList addrTypeTranslated = ui->cbxAddressType->currentText().split(" ");
     if (addrTypeTranslated.count() > 1) {
-        if(sAddrType.contains("(Ext)",Qt::CaseInsensitive)) {
+        if(sAddrType.contains("(Ext)")) {
             sAddrType = "Extended";
-        } else if(sAddrType.contains("(256bit)",Qt::CaseInsensitive)) {
+        } else if(sAddrType.contains("256bit")) {
             sAddrType = "Standard 256bit";
-        } else if (sAddrType.contains("(St)",Qt::CaseInsensitive)) {
+        } else if (sAddrType.contains("(St)")) {
             sAddrType = "Stealth";
         } else {
             sAddrType = "Standard";

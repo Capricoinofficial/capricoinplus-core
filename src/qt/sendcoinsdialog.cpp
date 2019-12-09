@@ -307,9 +307,9 @@ void SendCoinsDialog::on_sendButton_clicked()
 
     if (sTypeFromTranslated.count() > 1) {
         sTypeFrom = sTypeFromTranslated.value(sTypeFromTranslated.length() - 1).toLower();
-        if (sTypeFrom.contains("(b)",Qt::CaseInsensitive)) {
+        if (sTypeFrom.contains("(b)")) {
             sTypeFrom = "blind";
-        } else if(sTypeFrom.contains("(a)",Qt::CaseInsensitive)) {
+        } else if(sTypeFrom.contains("(a)")) {
             sTypeFrom = "anon";
         } else {
             sTypeFrom = "standard";
@@ -317,9 +317,9 @@ void SendCoinsDialog::on_sendButton_clicked()
     } 
     if (sTypeToTranslated.count() > 1) {
         sTypeTo = sTypeToTranslated.value(sTypeToTranslated.length() - 1).toLower();
-        if (sTypeTo.contains("(b)",Qt::CaseInsensitive)) {
+        if (sTypeTo.contains("(b)")) {
             sTypeTo = "blind";
-        } else if(sTypeTo.contains("(a)",Qt::CaseInsensitive)) {
+        } else if(sTypeTo.contains("(a)")) {
             sTypeTo = "anon";
         } else {
             sTypeTo = "standard";
