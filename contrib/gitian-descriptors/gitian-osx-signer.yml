@@ -7,7 +7,7 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/Capricoinofficial/particl-detached-sigs.git"
+- "url": "https://github.com/Capricoinofficial/capricoinplus-detached-sigs.git"
   "dir": "signature"
 files:
 - "capricoinplus-osx-unsigned.tar.gz"
