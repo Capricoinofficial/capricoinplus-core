@@ -19,45 +19,45 @@
 #include <boost/algorithm/string/split.hpp>
 
 // This part of the code is meant to mine the genesis block
-const arith_uint256 maxUint = UintToArith256(uint256S("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"));
-static void MineGenesis(CBlockHeader& genesisBlock, const uint256& powLimit, uint32_t nTime)
-{
-    genesisBlock.nTime = nTime;
-    genesisBlock.nNonce = 0;
+// const arith_uint256 maxUint = UintToArith256(uint256S("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"));
+// static void MineGenesis(CBlockHeader& genesisBlock, const uint256& powLimit, uint32_t nTime)
+// {
+//     genesisBlock.nTime = nTime;
+//     genesisBlock.nNonce = 0;
 
-    printf("NOTE: Genesis nTime = %u \n", genesisBlock.nTime);
-    printf("WARN: Genesis nNonce (BLANK!) = %u \n", genesisBlock.nNonce);
+//     printf("NOTE: Genesis nTime = %u \n", genesisBlock.nTime);
+//     printf("WARN: Genesis nNonce (BLANK!) = %u \n", genesisBlock.nNonce);
 
-    arith_uint256 besthash;
-    memset(&besthash, 0xFF, 32);
-    arith_uint256 hashTarget = UintToArith256(powLimit);
-    printf("Target: %s\n", hashTarget.GetHex().c_str());
-    arith_uint256 newhash = UintToArith256(genesisBlock.GetHash());
-    while (newhash > hashTarget) {
-        genesisBlock.nNonce++;
-        if (genesisBlock.nNonce == 0) {
-            printf("NONCE WRAPPED, incrementing time\n");
-            ++genesisBlock.nTime;
-        }
-        // If nothing found after trying for a while, print status
-        if ((genesisBlock.nNonce & 0xffff) == 0)
-            printf("nonce %08X: hash = %s \r",
-                genesisBlock.nNonce, newhash.ToString().c_str(),
-                hashTarget.ToString().c_str());
+//     arith_uint256 besthash;
+//     memset(&besthash, 0xFF, 32);
+//     arith_uint256 hashTarget = UintToArith256(powLimit);
+//     printf("Target: %s\n", hashTarget.GetHex().c_str());
+//     arith_uint256 newhash = UintToArith256(genesisBlock.GetHash());
+//     while (newhash > hashTarget) {
+//         genesisBlock.nNonce++;
+//         if (genesisBlock.nNonce == 0) {
+//             printf("NONCE WRAPPED, incrementing time\n");
+//             ++genesisBlock.nTime;
+//         }
+//         // If nothing found after trying for a while, print status
+//         if ((genesisBlock.nNonce & 0xffff) == 0)
+//             printf("nonce %08X: hash = %s \r",
+//                 genesisBlock.nNonce, newhash.ToString().c_str(),
+//                 hashTarget.ToString().c_str());
 
-        if (newhash < besthash) {
-            besthash = newhash;
-            printf("New best: %s\n", newhash.GetHex().c_str());
-        }
-        newhash = UintToArith256(genesisBlock.GetHash());
-    }
-    printf("\nGenesis nTime = %u \n", genesisBlock.nTime);
-    printf("Genesis nNonce = %u \n", genesisBlock.nNonce);
-    printf("Genesis nBits: %08x\n", genesisBlock.nBits);
-    printf("Genesis Hash = %s\n", newhash.ToString().c_str());
-    printf("Genesis Hash Merkle Root = %s\n", genesisBlock.hashMerkleRoot.ToString().c_str());
-    printf("Genesis Hash Witness Merkle Root = %s\n", genesisBlock.hashWitnessMerkleRoot.ToString().c_str());
-}
+//         if (newhash < besthash) {
+//             besthash = newhash;
+//             printf("New best: %s\n", newhash.GetHex().c_str());
+//         }
+//         newhash = UintToArith256(genesisBlock.GetHash());
+//     }
+//     printf("\nGenesis nTime = %u \n", genesisBlock.nTime);
+//     printf("Genesis nNonce = %u \n", genesisBlock.nNonce);
+//     printf("Genesis nBits: %08x\n", genesisBlock.nBits);
+//     printf("Genesis Hash = %s\n", newhash.ToString().c_str());
+//     printf("Genesis Hash Merkle Root = %s\n", genesisBlock.hashMerkleRoot.ToString().c_str());
+//     printf("Genesis Hash Witness Merkle Root = %s\n", genesisBlock.hashWitnessMerkleRoot.ToString().c_str());
+// }
 
 int64_t CChainParams::GetProofOfStakeReward(const CBlockIndex* pindexPrev, int64_t nFees) const
 {
@@ -161,8 +161,7 @@ const std::pair<const char*, CAmount> regTestOutputs[] = {
     std::make_pair("712a1272096031f524e5e7d483f38f48e470188a", 28800000 * COIN),
     std::make_pair("9d2ea1d2f594229d3021c98c37d74b398f981fbf", 28800000 * COIN),
     std::make_pair("566ea779be1404add415f5c241dbc1d2e2cddf02", 28800000 * COIN),
-    std::make_pair("9157712b73ff408032166da0cd1104f6015060db", 28800000 * COIN)
-};
+    std::make_pair("9157712b73ff408032166da0cd1104f6015060db", 28800000 * COIN)};
 const size_t nGenesisOutputsRegtest = sizeof(regTestOutputs) / sizeof(regTestOutputs[0]);
 
 const std::pair<const char*, CAmount> genesisOutputsTestnet[] = {
@@ -175,36 +174,50 @@ const std::pair<const char*, CAmount> genesisOutputsTestnet[] = {
     std::make_pair("712a1272096031f524e5e7d483f38f48e470188a", 28800000 * COIN),
     std::make_pair("9d2ea1d2f594229d3021c98c37d74b398f981fbf", 28800000 * COIN),
     std::make_pair("566ea779be1404add415f5c241dbc1d2e2cddf02", 28800000 * COIN),
-    std::make_pair("9157712b73ff408032166da0cd1104f6015060db", 28800000 * COIN)
-};
+    std::make_pair("9157712b73ff408032166da0cd1104f6015060db", 28800000 * COIN)};
 const size_t nGenesisOutputsTestnet = sizeof(genesisOutputsTestnet) / sizeof(genesisOutputsTestnet[0]);
 
 const std::pair<const char*, CAmount> genesisOutputs[] = {
-    std::make_pair("4bb5b701023e17c32c0cc1cbbaf895110ef0f920", 14400000 * COIN),
-    std::make_pair("ab6c3617682d3de8c90a4ae2b5bb75ad9d428544", 14400000 * COIN),
-    std::make_pair("119e3995e6ed8a0404935eb0c6d011c050a3f7b9", 14400000 * COIN),
-    std::make_pair("82ba19de741557c123bad505b0e9ad78a8b6d39b", 14400000 * COIN),
-    std::make_pair("c58ac867ca5fe49e35fc742e8ecc7700f43d8de9", 14400000 * COIN),
-    std::make_pair("1f412aaa3eb83fef657736dd18169c6a905fb4f7", 14400000 * COIN),
-    std::make_pair("c606d8b3563d4985b6f799556adca4e3fb8b2e6c", 14400000 * COIN),
-    std::make_pair("56778d1a5d9f3f25aa233955456e300b6cf53a3c", 14400000 * COIN),
-    std::make_pair("6e392f27a95eaa782f99187c347ec049fcad8a9a", 14400000 * COIN),
-    std::make_pair("b5fb3775f2bb31aaa1b5925ad09af9f2b08bf952", 14400000 * COIN),
-    std::make_pair("1bfc58f310de241dd57c7ba641df0738eb001eba", 14400000 * COIN),
-    std::make_pair("011fdd438fcd397234560efa13e8f4e5278ab966", 14400000 * COIN),
-    std::make_pair("73b1646e7a9d3577beb80da4d30c89e63dbe576e", 14400000 * COIN),
-    std::make_pair("2933cf9d3f077aa4a963c3fd4f2351983e7aff24", 14400000 * COIN),
-    std::make_pair("a571dd7a5e64d0d9f8b3c34f62e512bb82eb3ca4", 14400000 * COIN),
-    std::make_pair("72edbc3f92728646e2cfb1b7cb8f1be14ab8c5fc", 14400000 * COIN),
-    std::make_pair("b462173b71103a6f0498e55f7f3f403b62d74999", 14400000 * COIN),
-    std::make_pair("a8ad63f07702bd0378603143a88f53e8364cf5c5", 14400000 * COIN),
-    std::make_pair("c6198f94e6b0037eebbac7671f6ee58267654ad8", 14400000 * COIN),
-    std::make_pair("47433c5f1dd1948e692fb30758652733666dad13", 13900000 * COIN),
-    std::make_pair("5fdf9173001aa20d8d4b84243cb258df1b19765e", 125000 * COIN),
-    std::make_pair("0391e7c6ec2a5519ac71053e4cf9632a6d1a02a3", 125000 * COIN),
-    std::make_pair("5de62de4299cbcfefbd087bff0ab0f950f42ec98", 125000 * COIN),
-    std::make_pair("6ed424eb2caea4e33c3d9ac75735e35a6575b779", 125000 * COIN)
-};
+    std::make_pair("8064137791265f99b633e3ebccc721590559e1db", 9600000 * COIN),
+    std::make_pair("9dd8fb5ac2698d70dec877a0d7dc61d0f4e148c1", 9600000 * COIN),
+    std::make_pair("cd01712ef433483395652611239fc102032fcd78", 9600000 * COIN),
+    std::make_pair("04860494ef7f5d9b1ff03fc3658df985fb921829", 9600000 * COIN),
+    std::make_pair("d2b872b57ea6d5fb5f3f1a7cb8f68c7ed3d0fb9a", 9600000 * COIN),
+    std::make_pair("ee5779c825e3690049440698d54ef4796fd4172c", 9600000 * COIN),
+    std::make_pair("d8186f79450d7135dfcb0e2febd490f0f0d3b5ce", 9600000 * COIN),
+    std::make_pair("db42699332a15f4fc0ee952a40911947ba03e5c0", 9600000 * COIN),
+    std::make_pair("6bdd0f98183a5f85636d733178180c90a5de78f3", 9600000 * COIN),
+    std::make_pair("e110429da488b1b7d5a31fc0a028a07ce9ee38dd", 9600000 * COIN),
+    std::make_pair("be425f4239b5a2c10d15ee965eaada180473f7b3", 9600000 * COIN),
+    std::make_pair("4c7c429e8ec87879d1d494dd5e6c275190519e87", 9600000 * COIN),
+    std::make_pair("95399d0a28ec3b3dba346b43343c0ac76a95f19b", 9600000 * COIN),
+    std::make_pair("38cbc08ba62f9fb5eddd41010fb3cd2401e9dcb5", 9600000 * COIN),
+    std::make_pair("b52b517c9e6bf98daf5d5c05cc06b6ab420f268f", 9600000 * COIN),
+    std::make_pair("b817cb8c9c5c5a80a19e16d3886fbbde30f68093", 9600000 * COIN),
+    std::make_pair("780085a7aeb0c8d1e2f3a5c413a7823df11bc0a7", 9600000 * COIN),
+    std::make_pair("cd3d0df7df3b001ea61adec099e1107eb16dc75c", 9600000 * COIN),
+    std::make_pair("95f9d59c8318941f815c00d75632c76f021adf94", 9600000 * COIN),
+    std::make_pair("6b061304cd6cc53f59de6f73294ccb58f8d523da", 9600000 * COIN),
+    std::make_pair("18258003482b4be66ecc261719638c0a6465355a", 9600000 * COIN),
+    std::make_pair("111407d33fa4e61596f85efa1527b5a2bbcc040b", 9600000 * COIN),
+    std::make_pair("a37193b5e4b2e3fe64b0096720fb0fc9f35a6663", 9600000 * COIN),
+    std::make_pair("1dcdbc606e0ab29e86148e3bf47868fcefdf4818", 9600000 * COIN),
+    std::make_pair("3d93f3abd6d938c3001767dac421c0d9e30b4eb3", 9600000 * COIN),
+    std::make_pair("d43c05f22283750d52bcf7215b571fae8a0cef13", 9600000 * COIN),
+    std::make_pair("d22119751fcd37de4b2594d04c837465ee380ce7", 9600000 * COIN),
+    std::make_pair("d876b222e055e16a7c25db1591c298bd7e43cad8", 9600000 * COIN),
+    std::make_pair("d370b51c3c6057930755f2bc20cc49e60e13b320", 9600000 * COIN),
+    std::make_pair("3f50437321200896d773cfc106d5c0ec4608b73b", 8600000 * COIN),
+    std::make_pair("d6fb9846b0391a2fe551200ab6abe4bd75da2c26", 100000 * COIN),
+    std::make_pair("2e838b37660930cd7cdbaa27d7789482ee0b65ca", 100000 * COIN),
+    std::make_pair("e24a1939fe74be88643fba5acf4c89b02cf2b766", 100000 * COIN),
+    std::make_pair("8009fcb03ab33bced4297e3d0c04145777e7e80b", 100000 * COIN),
+    std::make_pair("42bbf228d4b5b598f0a67ea930b3d8d4fa21d00c", 100000 * COIN),
+    std::make_pair("9a8f92d2e71d3112f35e9370cb5b8e2642feb477", 100000 * COIN),
+    std::make_pair("9c03f2a324b003237afaa7a75be161a4fa57ee91", 100000 * COIN),
+    std::make_pair("7775081d45ff950d7e2d3d555a41f4736168cd1f", 100000 * COIN),
+    std::make_pair("36a557c49657db83d801fce5cd2288572c618c7a", 100000 * COIN),
+    std::make_pair("3058a24b18235176f2a0dbb1306b08194eed069f", 100000 * COIN)};
 const size_t nGenesisOutputs = sizeof(genesisOutputs) / sizeof(genesisOutputs[0]);
 
 static CBlock CreateGenesisBlockRegTest(uint32_t nTime, uint32_t nNonce, uint32_t nBits)
@@ -388,13 +401,13 @@ public:
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 0;
 
-        genesis = CreateGenesisBlockMainNet(1577836800, 9967772, 0x1f00ffff);
+        genesis = CreateGenesisBlockMainNet(1577836800, 400587, 0x1f00ffff);
         // MineGenesis(genesis, consensus.powLimit, 1577836800);
         consensus.hashGenesisBlock = genesis.GetHash();
 
-        assert(consensus.hashGenesisBlock == uint256S("0x000000cd73f9b36d570feea64a5db4c719d888b69c927f22c2af07c9eecea90b"));
-        assert(genesis.hashMerkleRoot == uint256S("0x070818e3b7dc95c49ffa37d094743c331a3e2f516619975d3c359378a6d3026c"));
-        assert(genesis.hashWitnessMerkleRoot == uint256S("0xc2dc3f95a291b6778a37c0883a10e88265a4c836a5fd0e5a18b50980fc402230"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000000a9d134165ec65a4eaf31a2f035a8a6378fd888f69ad56c8d45ea93d34f"));
+        assert(genesis.hashMerkleRoot == uint256S("0xab31a61a0dd0295ab93d1a42bb15ebfe70360e5fb30f385c3e8316e22dd18479"));
+        assert(genesis.hashWitnessMerkleRoot == uint256S("0x47ee528ebc554fd8a6054fcab29087c7a613d68da3bcce6f5e5a4d8ef1d2b697"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
