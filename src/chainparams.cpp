@@ -373,7 +373,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1510704000;   // November 15th, 2017.
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000010001");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000b94db4e00a240b386");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x5a1e8651002ce2d5a43144e4e62b4a91b8189e976175fa4e69195c21607d1bf9"); // 560766
@@ -398,8 +398,8 @@ public:
         nTargetTimespan = 24 * 60;    // 24 mins
 
         nPruneAfterHeight = 100000;
-        m_assumed_blockchain_size = 0;
-        m_assumed_chain_state_size = 0;
+        m_assumed_blockchain_size = 1;
+        m_assumed_chain_state_size = 1;
 
         genesis = CreateGenesisBlockMainNet(1577836800, 400587, 0x1f00ffff);
         // MineGenesis(genesis, consensus.powLimit, 1577836800);
@@ -452,13 +452,29 @@ public:
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
 
-        checkpointData = {};
+        checkpointData = {
+            {
+                {5000, uint256S("0xf314525635ba0f7fe65a4c5b58d5b8ed9e8244d633c3b492daa6116b9edea194")},
+                {10000, uint256S("0xdddd67c9fe83e2e6be596c3aa221f366af65c62983367f8bd65663f64c422d75")},
+                {20000, uint256S("0xee4bc451b9230ff7b48879928decd59a935c85ee33a6aa571462380849ef5eb6")},
+                {30000, uint256S("0x31394117fadf6f3ad270405e23fdd40e29a1a92ff9e6f2a6eff6f18b61b29e65")},
+                {40000, uint256S("0xfee3357b3a8f568a11df0c5fcf6ae8c68bb5ebbaabf2a46e122b5938eaf4aab1")},
+                {50000, uint256S("0xd5fc9756e246a74fbf4c52330c18e8fd1195ad04cd2729a20ddbca97799f65bb")},
+                {60000, uint256S("0x1b8cce36766bba43e3018a846a4b4938dc04a389b6b632dc611ae832d84810c3")},
+                {70000, uint256S("0xa69d2eb24505b88947c4c9091e18d7d7726455d2faacd2558671f52daef02864")},
+                {80000, uint256S("0x69c12ce7eac09662adb263267da6d84fa0e8b81a37978867ef05d0b8d46b436b")},
+                {90000, uint256S("0xcc9670d6897ca5478f2d65bf0be42e08774ca18402afae2b2bac0d81982c4424")},
+                {100000, uint256S("0x1a02fdb5a0fff97ff9d354a19bc646dfe6637fe8254561d92f3b014658179bdc")},
+                {110000, uint256S("0x3e6235f03ad5924e6431360081d4ebc0bd6cf3e1203601fd8513629ed650b3fa")},
+                {120000, uint256S("0x0c5cc99abe30fe51f76ff0c71cade4c42f97c802234518f66eba74170bfd7230")},
+            }
+        };
 
         chainTxData = ChainTxData{
             // Data from rpc: getchaintxstats
-            /* nTime    */ 0,
-            /* nTxCount */ 0,
-            /* dTxRate  */ 0};
+            /* nTime    */ 1586285504,
+            /* nTxCount */ 124732,
+            /* dTxRate  */ 0.016};
 
         /* disable fallback fee on mainnet */
         m_fallback_fee_enabled = false;
@@ -537,7 +553,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1493596800;   // May 1st 2017
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000010001");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000095807eb8709dc9783");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x51143e8e5a5fd68f0aebdb8eca15950826db6cc3d7ed8aec447444aff74174bc"); // 511910
@@ -557,8 +573,8 @@ public:
         nTargetTimespan = 24 * 60;    // 24 mins
 
         nPruneAfterHeight = 1000;
-        m_assumed_blockchain_size = 0;
-        m_assumed_chain_state_size = 0;
+        m_assumed_blockchain_size = 1;
+        m_assumed_chain_state_size = 1;
 
         genesis = CreateGenesisBlockTestNet(1574847000, 6542589, 0x1f00ffff);
         // MineGenesis(genesis, consensus.powLimit, 1574847000);
@@ -609,13 +625,22 @@ public:
         fRequireStandard = false;
         fMineBlocksOnDemand = false;
 
-        checkpointData = {};
+        checkpointData = {
+            {
+                {5000, uint256S("0x552fbfcf63470d8571bc2287b4f8854502f6554b330fc91c110c9b3c6b03bdc7")},
+                {10000, uint256S("0xc50427872920660ddc6e81ad3c2a6e2361c1c956196df0361fc1e70feba0e280")},
+                {50000, uint256S("0x349cf4e02ec8f11fbcc5f2e4fa5e479e97123fbd7a0b390c4453324975939075")},
+                {100000, uint256S("0x4a9af02f24f6ed859bb2b67dde29b5e19fb2a2bd546c0c3f57dc5d78d35870ee")},
+                {150000, uint256S("0x38eb0799b43f9e13c74adedcadf07d8f65163f897e2eba0a3c086bbcf37138ab")},
+                {175000, uint256S("0xb5b824ddfe0e6a5e35252fec724ea6a1bf0d0898e00ad578bf28dc3df283a353")},
+            }
+        };
 
         chainTxData = ChainTxData{
             // Data from rpc: getchaintxstats
-            /* nTime    */ 0,
-            /* nTxCount */ 0,
-            /* dTxRate  */ 0};
+            /* nTime    */ 1586286208,
+            /* nTxCount */ 179678,
+            /* dTxRate  */ 0.016};
 
         /* enable fallback fee on testnet */
         m_fallback_fee_enabled = true;
