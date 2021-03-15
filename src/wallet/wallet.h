@@ -1171,7 +1171,7 @@ public:
      */
     boost::signals2::signal<void (CWallet *wallet, const CTxDestination
             &address, const std::string &label, bool isMine,
-            const std::string &purpose,
+            const std::string &purpose, const std::string &path,
             ChangeType status)> NotifyAddressBookChanged;
 
     /**

@@ -86,6 +86,10 @@
         <translation>编辑(&amp;E)</translation>
     </message>
     <message>
+        <source>&amp;Verify Address On Hardware Wallet</source>
+        <translation>验证硬件钱包地址(&amp;V)</translation>
+    </message>
+    <message>
         <source>Export Address List</source>
         <translation>导出地址列表</translation>
     </message>
@@ -110,6 +114,10 @@
     </message>
     <message>
         <source>Address</source>
+        <translation>路径</translation>
+    </message>
+    <message>
+        <source>Path</source>
         <translation>地址</translation>
     </message>
     <message>

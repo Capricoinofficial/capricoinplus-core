@@ -109,6 +109,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location line="+1"/>
+        <source>&amp;Verify Address On Hardware Wallet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+177"/>
         <source>Export Address List</source>
         <translation type="unfinished"></translation>
@@ -139,6 +144,11 @@
     <message>
         <location line="+0"/>
         <source>Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

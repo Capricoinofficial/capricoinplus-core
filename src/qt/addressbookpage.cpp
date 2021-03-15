@@ -117,6 +117,7 @@ AddressBookPage::AddressBookPage(const PlatformStyle *platformStyle, Mode _mode,
     QAction *copyAddressAction = new QAction(tr("&Copy Address"), this);
     QAction *copyLabelAction = new QAction(tr("Copy &Label"), this);
     QAction *editAction = new QAction(tr("&Edit"), this);
+    QAction *verifyAddressOnHWAction = new QAction(tr("&Verify Address On Hardware Wallet"), this);
     deleteAction = new QAction(ui->deleteAddress->text(), this);
 
     // Build context menu
@@ -124,14 +125,17 @@ AddressBookPage::AddressBookPage(const PlatformStyle *platformStyle, Mode _mode,
     contextMenu->addAction(copyAddressAction);
     contextMenu->addAction(copyLabelAction);
     contextMenu->addAction(editAction);
-    if(tab == SendingTab)
+    if(tab == SendingTab) 
         contextMenu->addAction(deleteAction);
+    else if(tab == ReceivingTab)
+        contextMenu->addAction(verifyAddressOnHWAction);
     contextMenu->addSeparator();
 
     // Connect signals for context menu actions
     connect(copyAddressAction, &QAction::triggered, this, &AddressBookPage::on_copyAddress_clicked);
     connect(copyLabelAction, &QAction::triggered, this, &AddressBookPage::onCopyLabelAction);
     connect(editAction, &QAction::triggered, this, &AddressBookPage::onEditAction);
+    connect(verifyAddressOnHWAction, &QAction::triggered, this, &AddressBookPage::onVerifyAddressOnHWAction);
     connect(deleteAction, &QAction::triggered, this, &AddressBookPage::on_deleteAddress_clicked);
 
     connect(ui->tableView, &QWidget::customContextMenuRequested, this, &AddressBookPage::contextualMenu);
@@ -201,6 +205,23 @@ void AddressBookPage::onEditAction()
     QModelIndex origIndex = proxyModel->mapToSource(indexes.at(0));
     dlg.loadRow(origIndex.row());
     dlg.exec();
+}
+
+void AddressBookPage::onVerifyAddressOnHWAction()
+{
+    QTableView *table = ui->tableView;
+    if(!table->selectionModel() || !table->model())
+        return;
+
+    QModelIndexList indexes = table->selectionModel()->selectedRows(AddressTableModel::Path);
+    if(indexes.isEmpty())
+        return;
+
+    for (const QModelIndex& index : indexes) {
+        QVariant path = table->model()->data(index);
+        model->verifyOnHardwareDevice(path.toString());
+    }
+
 }
 
 void AddressBookPage::on_newAddress_clicked()

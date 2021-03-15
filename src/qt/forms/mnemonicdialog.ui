@@ -324,7 +324,7 @@
                             </item>
                         </layout>
                     </widget>
-                    <!-- <widget class="QWidget" name="tabHardware">
+                    <widget class="QWidget" name="tabHardware">
       <attribute name="title">
        <string>Hardware Device</string>
       </attribute>
@@ -425,7 +425,7 @@
         </widget>
        </item>
       </layout>
-     </widget> -->
+     </widget>
                 </widget>
             </item>
             <item row="0" column="0">

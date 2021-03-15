@@ -32,7 +32,7 @@ MnemonicDialog::MnemonicDialog(QWidget* parent, WalletModel* wm) : QDialog(paren
     ui->setupUi(this);
 
     QObject::connect(ui->btnCancel2, &QPushButton::clicked, this, &MnemonicDialog::on_btnCancel_clicked);
-    // QObject::connect(ui->btnCancel3, &QPushButton::clicked, this, &MnemonicDialog::on_btnCancel_clicked);
+    QObject::connect(ui->btnCancel3, &QPushButton::clicked, this, &MnemonicDialog::on_btnCancel_clicked);
 
     QObject::connect(this, &MnemonicDialog::startRescan, walletModel, &WalletModel::startRescan, Qt::QueuedConnection);
 
@@ -123,7 +123,7 @@ void MnemonicDialog::on_btnGenerate_clicked()
     return;
 };
 
-/* no hardware support right now
+
 void MnemonicDialog::on_btnImportFromHwd_clicked()
 {
     if (m_thread) {
@@ -182,4 +182,4 @@ void MnemonicDialog::hwImportComplete(bool passed)
     }
 
     return;
-}; */
+};

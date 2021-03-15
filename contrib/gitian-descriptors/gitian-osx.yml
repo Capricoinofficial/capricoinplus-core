@@ -1,5 +1,5 @@
 ---
-name: "capricoinplus-osx-0.18.1.7"
+name: "capricoinplus-osx-0.18.1.9"
 enable_cache: true
 suites:
 - "bionic"
@@ -37,7 +37,7 @@ script: |
 
   WRAP_DIR=$HOME/wrapped
   HOSTS="x86_64-apple-darwin14"
-  CONFIGFLAGS="--enable-reduce-exports --disable-bench --disable-gui-tests --disable-usbdevice GENISOIMAGE=$WRAP_DIR/genisoimage"
+  CONFIGFLAGS="--enable-reduce-exports --disable-bench --disable-gui-tests --enable-endomorphism --enable-usbdevice GENISOIMAGE=$WRAP_DIR/genisoimage"
   FAKETIME_HOST_PROGS=""
   FAKETIME_PROGS="ar ranlib date dmg genisoimage"
 

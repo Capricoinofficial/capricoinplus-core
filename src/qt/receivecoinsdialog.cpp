@@ -180,9 +180,9 @@ void ReceiveCoinsDialog::on_receiveButton_clicked()
         }
     }
     
-    if (sAddrType == "Stealth")
-        addrType = AddressTableModel::ADDR_STEALTH;
-    else
+    if (sAddrType == "Stealth") {
+        addrType = AddressTableModel::ADDR_STEALTH; 
+    }else
     if (sAddrType == "Extended")
         addrType = AddressTableModel::ADDR_EXT;
     else

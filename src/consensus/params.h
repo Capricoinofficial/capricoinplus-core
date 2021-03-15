@@ -72,6 +72,8 @@ struct Params {
     uint32_t bulletproof_time;
     /** Time at which RCT become active */
     uint32_t rct_time;
+    /** Time at which RCT fix active */
+    uint32_t rct_fix_time = 0;
     /** Time at which SMSG difficulty tokens are enforced */
     uint32_t smsg_difficulty_time;
     /** Time of fork to activate more data outputs for blind and anon txns */

@@ -97,6 +97,7 @@ public:
     bool fEnforceSmsgFees = false; // per block
     bool fBulletproofsActive = false; // per block
     bool rct_active = false; // per block
+    bool m_rct_fix_time = false; //at time
     bool fHasAnonOutput = false; // per tx
     bool fHasAnonInput = false; // per tx
     bool fIncDataOutputs = false; // per block
@@ -111,6 +112,7 @@ public:
         if (spend_height > -1) {
             m_spend_height = spend_height; // Pass through connectblock->checkblock
         }
+        m_rct_fix_time = time >= consensusParams.rct_fix_time;
     }
 };
 

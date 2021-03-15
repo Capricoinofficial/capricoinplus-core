@@ -30,7 +30,8 @@ public:
 
     enum ColumnIndex {
         Label = 0,   /**< User specified label */
-        Address = 1  /**< Bitcoin address */
+        Address = 1,  /**< Bitcoin address */
+        Path = 2
     };
 
     enum RoleIndex {
@@ -80,6 +81,9 @@ public:
     /** Look up purpose for address in address book, if not found return empty string. */
     QString purposeForAddress(const QString &address) const;
 
+    /** Look up path for address in address book, if not found return empty string. */
+	    QString pathForAddress(const QString &address) const;
+
     /* Look up row index of an address in the model.
        Return -1 if not found.
      */
@@ -88,6 +92,8 @@ public:
     EditStatus getEditStatus() const { return editStatus; }
 
     OutputType GetDefaultAddressType() const;
+    void verifyOnHardwareDevice(QString address);
+    bool isHardwareLinked();
 
 private:
     WalletModel* const walletModel;
@@ -104,7 +110,7 @@ private:
 public Q_SLOTS:
     /* Update address list from core.
      */
-    void updateEntry(const QString &address, const QString &label, bool isMine, const QString &purpose, int status);
+    void updateEntry(const QString &address, const QString &label, bool isMine, const QString &purpose, const QString &path, int status);
 
     friend class AddressTablePriv;
 };

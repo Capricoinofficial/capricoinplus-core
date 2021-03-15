@@ -1,4 +1,5 @@
-// Copyright (c) 2017-2019 The Particl Core developers
+// Copyright (c) 2017-2021 The Particl Core developers
+// Copyright (c) 2020-2021 The CapricoinPlus Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file license.txt or http://www.opensource.org/licenses/mit-license.php.
 
@@ -57,6 +58,7 @@ bool VerifyMLSAG(const CTransaction &tx, CValidationState &state)
         if (!txin.IsAnonInput()) {
             return state.DoS(100, false, REJECT_MALFORMED, "bad-anon-input");
         }
+        uint256 txhash = tx.GetHash();
 
         uint32_t nInputs, nRingSize;
         txin.GetAnonInfo(nInputs, nRingSize);
@@ -67,8 +69,6 @@ bool VerifyMLSAG(const CTransaction &tx, CValidationState &state)
         if (nRingSize < MIN_RINGSIZE || nRingSize > MAX_RINGSIZE) {
             return state.DoS(100, false, REJECT_INVALID, "bad-anon-ringsize");
         }
-
-        uint256 txhash = tx.GetHash();
 
         size_t nCols = nRingSize;
         size_t nRows = nInputs + 1;
@@ -175,7 +175,7 @@ bool VerifyMLSAG(const CTransaction &tx, CValidationState &state)
         }
 
         if (0 != (rv = secp256k1_prepare_mlsag(&vM[0], nullptr,
-            vpOutCommits.size(), vpOutCommits.size(), nCols, nRows,
+            vpOutCommits.size(), 0, nCols, nRows,
             &vpInCommits[0], &vpOutCommits[0], nullptr))) {
             return state.DoS(100, error("%s: prepare-mlsag-failed %d", __func__, rv), REJECT_INVALID, "prepare-mlsag-failed");
         }
